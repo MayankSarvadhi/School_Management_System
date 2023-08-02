@@ -24,4 +24,3 @@ export class AppServer {
     }
 }
 new AppServer();
-
