@@ -1,4 +1,4 @@
-# Role-Based School Management System - Project Overview
+# Role-Based School Management System
 
 ## Introduction
 The Role-Based School Management System is a web application designed to manage various aspects of a school, including class management, attendance tracking, lecture scheduling, and more. The application has three user roles: Principal, Teacher, and Student, each with specific functionalities and access permissions.
