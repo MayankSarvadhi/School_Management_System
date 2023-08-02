@@ -3,6 +3,7 @@ import * as dotenv from 'dotenv';
 import { routes } from '../routes/index';
 import { ErrorHandler } from '../middleware';
 import passport from 'passport';
+import './authentication';
 dotenv.config();
 
 export const createApp = (): Express => {

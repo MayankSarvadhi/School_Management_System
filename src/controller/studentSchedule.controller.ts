@@ -14,7 +14,7 @@ class StudentScheduleController {
                     model: db.LectureSchema,
                     attributes: ['Time', 'WeekDay'],
                     where: {
-                        WeekDay: (!date.length || date.length === 0)
+                        WeekDay: (!date.length)
                             ? toDayDate
                             : date
                     }
@@ -22,9 +22,15 @@ class StudentScheduleController {
             }],
             where: { StudentID: req.user.id }
         });
-        if (scheduleData === null) return next(new AppError('Today have no Schedule', 'not_found'));
-        return res.status(200).json({ success: true, statusCode: 200, data: scheduleData, message: 'Data Fetch SuccessFully' });
-
+        if (!scheduleData) {
+            return next(new AppError('Today has no schedule', 'not_found'));
+        }
+        return res.status(200).json({
+            success: true,
+            statusCode: 200,
+            data: scheduleData,
+            message: 'Data Fetch Successfully'
+        });
     }
 }
 
