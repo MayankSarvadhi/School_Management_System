@@ -107,18 +107,6 @@ You should see a message in the console indicating that the server has started s
 | /student        | Adding and removing students to/from classes. Restricted to Teacher role. |
 | /schedule       | Viewing student schedule. Restricted to Student and Principal roles. |
 
-## Routes
-
-| Route                 | Middleware and Permissions              | Description                                |
-|-----------------------|----------------------------------------|--------------------------------------------|
-| /user                 | -                                      | User-related routes handled in UserRoutes. |
-| /auth                 | -                                      | Authentication routes handled in AuthRoutes. |
-| /class                | - passport.authenticate('jwt', { session: false })<br> - permit(USER_ROLE.PRINCIPAL) | Class management routes handled in ClassRoutes. |
-| /attendance           | - passport.authenticate('jwt', { session: false })<br> - permit([USER_ROLE.TEACHER, USER_ROLE.PRINCIPAL]) | Attendance management routes handled in AttendanceRoutes. |
-| /lecture              | - passport.authenticate('jwt', { session: false })<br> - permit([USER_ROLE.TEACHER, USER_ROLE.PRINCIPAL]) | Lecture scheduling routes handled in LectureRoutes. |
-| /reporting            | - passport.authenticate('jwt', { session: false })<br> - permit([USER_ROLE.TEACHER, USER_ROLE.PRINCIPAL]) | Reporting issues routes handled in ReportingRoutes. |
-| /student              | - passport.authenticate('jwt', { session: false })<br> - permit(USER_ROLE.TEACHER) | Student management routes handled in StudentsRoutes. |
-| /schedule             | - passport.authenticate('jwt', { session: false })<br> - permit([USER_ROLE.STUDENT, USER_ROLE.PRINCIPAL]) | Schedule viewing routes handled in StudentsScheduleRoutes. |
 
 ## Error Handling
 
