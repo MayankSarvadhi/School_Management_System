@@ -4,6 +4,9 @@ import { db } from '../models/index';
 class StudentScheduleController {
 
     async viewSchedule(req, res, next) {
+        req.user.Role
+            ? 'Student'
+            : next(new AppError('You do not have permission to access this route.', 'Forbidden'));
         const date = Object.keys(req.query);
         const toDayDate = new Date().toISOString().split('T')[0];
         const scheduleData = await db.StudentsSchema.findOne({
