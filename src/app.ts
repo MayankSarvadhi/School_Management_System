@@ -6,7 +6,7 @@ export class AppServer {
     constructor() {
         const app = createApp();
         app.listen(port, () => {
-            logger.info(`👍 Server is listening on Port:- ${port}`);
+            logger.info(`🚀 Server is listening on Port:- ${port}`);
         });
     }
 }
