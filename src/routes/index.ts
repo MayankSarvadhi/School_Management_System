@@ -43,7 +43,7 @@ routes.use(END_POINTS.STUDENT,
 );
 routes.use(END_POINTS.SCHEDULE,
     passport.authenticate('jwt', { session: false }),
-    permit([USER_ROLE.STUDENT, USER_ROLE.PRINCIPAL]),
+    permit(USER_ROLE.STUDENT),
     StudentsScheduleRoutes
 );
 
