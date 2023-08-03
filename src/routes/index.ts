@@ -23,7 +23,6 @@ routes.use(END_POINTS.CLASS,
 );
 routes.use(END_POINTS.ATTENDANCE,
     passport.authenticate('jwt', { session: false }),
-    permit([USER_ROLE.TEACHER, USER_ROLE.PRINCIPAL]),
     AttendanceRoutes
 );
 routes.use(END_POINTS.LECTURE,
