@@ -20,4 +20,4 @@ export const db = {
     StudentsSchema
 };
 
-// db.sequelize.sync({ force: false });
+// db.sequelize.sync({ force: true });

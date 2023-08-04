@@ -3,6 +3,9 @@ import { Model } from 'sequelize';
 export interface UserModel extends Model {
     id: number;
     UserName: string;
+    FirstName: string;
+    LastName: string;
+    Phone: string;
     Email: string;
     Password: string;
     Role: 'Principal' | 'Teacher' | 'Student';

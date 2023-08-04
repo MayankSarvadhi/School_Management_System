@@ -13,7 +13,18 @@ export const UsersSchema = sequelize.define<UserModel>('userInformation', {
     UsersName: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+    },
+    FirstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    LastName: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    Phone: {
+        type: DataTypes.STRING,
+        allowNull: false
     },
     Email: {
         type: DataTypes.STRING,
@@ -38,6 +49,10 @@ export const UsersSchema = sequelize.define<UserModel>('userInformation', {
     }
 
 }, {
+    indexes: [{
+        unique: true,
+        fields: ['UserName', 'FirstName','LastName']
+    }],
     hooks: {
         afterValidate: user => {
             user.Password = hashSync(user.Password, 12);

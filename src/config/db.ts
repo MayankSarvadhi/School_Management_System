@@ -7,14 +7,14 @@ export const sequelize = new Sequelize(process.env.DB_NAME || '', process.env.DB
     host: process.env.DB_HOST || '',
     dialect: process.env.DB_DIALECT as Dialect,
     port: Number(process.env.DB_PORT),
-    logging: false
+    // logging: false
 });
 
 // DB Connection Check Function:-
 (async () => {
     try {
         await sequelize.authenticate();
-        logger.info('📡 Connection has been established successfully.');
+        logger.info('👍 Connection has been established successfully.');
     } catch (error) {
         logger.error(`👎🏼 Unable to connect to the database: ${error}`);
     }

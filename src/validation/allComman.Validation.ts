@@ -5,6 +5,9 @@ export const ValidationSchema = (req, res, next) => {
 
     const userSchema = Joi.object({
         UsersName: Joi.string().required(),
+        FirstName: Joi.string().required(),
+        LastName: Joi.string().required(),
+        Phone: Joi.string().min(9).max(9).required(),
         Email: Joi.string().min(10).email().required(),
         Password: Joi.string()
             .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)
