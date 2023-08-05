@@ -10,8 +10,9 @@ import { ClassRoutes } from './class.routes';
 import { AttendanceRoutes } from './attendance.routes';
 import { LectureRoutes } from './lecture.routes';
 import { ReportingRoutes } from './reporting.routes';
-import { StudentsRoutes } from './students.routes';
+import { StudentsRoutes } from './teacher.routes';
 import { StudentsScheduleRoutes } from './studentSchedule.routes';
+import { StudentDetailsRoutes } from './studentDetails.routes';
 import passport from 'passport';
 
 routes.use(END_POINTS.USER, UserRoutes);
@@ -37,13 +38,17 @@ routes.use(END_POINTS.REPORTING,
 );
 routes.use(END_POINTS.STUDENT,
     passport.authenticate('jwt', { session: false }),
-    permit(USER_ROLE.STUDENT),
+    permit(USER_ROLE.TEACHER),
     StudentsRoutes
 );
 routes.use(END_POINTS.SCHEDULE,
     passport.authenticate('jwt', { session: false }),
     permit(USER_ROLE.STUDENT),
     StudentsScheduleRoutes
+);
+routes.use(END_POINTS.STUDENT_DETAILS,
+    passport.authenticate('jwt',{ session: false }),
+    StudentDetailsRoutes
 );
 
 const invalidedRouter = asyncWrapper((req, res, next) => {

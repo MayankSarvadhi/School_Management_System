@@ -13,6 +13,7 @@ export interface UserModel extends Model {
 }
 
 export interface StudentDetailsModel extends Model {
+    id: any;
     FirstName: string;
     LastName: string;
     GRID: number;

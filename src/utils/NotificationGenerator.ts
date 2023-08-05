@@ -32,9 +32,9 @@ export class SendNotificationEmail {
                         <p>Hello there!</p>
                         <p>You have been invited to join our app. Click the link below to create your new password.</p>
                         <p>This password or link never shar to other person</p>
-                        <p>Invitation Link: http://localhost:3000</p>
+                        <p>Invitation Link: ${ extra }</p>
                         <p>Regards,</p>
-                        <p>${ extra }</p>
+                        
                         <p>Your App Team</p>`;
                 break;
 
@@ -45,7 +45,7 @@ export class SendNotificationEmail {
                         <h1>Message Notification</h1>
                         <p>Hello,</p>
                         <p>You have received a new message:</p>
-                        <p>Message Content: ${emails}</p>
+                        <p>Message Content: ${extra}</p>
                         <p>Regards,</p>
                         <p>Your App Team</p>`;
                 break;
@@ -56,7 +56,7 @@ export class SendNotificationEmail {
                 htmlContent = `
                         <h1>Celebration Notification</h1>
                         <p>Hello,</p>
-                        <p>Congratulations! We are celebrating ${emails}.</p>
+                        <p>Congratulations! We are celebrating ${extra}.</p>
                         <p>Regards,</p>
                         <p>Your App Team</p>`;
                 break;
@@ -66,7 +66,7 @@ export class SendNotificationEmail {
 
         }
         const mailOptions = {
-            from: 'mayankkathiriya008@gmail.com',
+            from: process.env.GMAIL,
             to: emails,
             subject,
             html: htmlContent,

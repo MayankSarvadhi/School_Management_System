@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { db } from '../models/index';
 import { ApplicationController } from './application.controller';
-import { NotificationTypes, SendNotificationEmail } from '../utils';
+// import { NotificationTypes, SendNotificationEmail } from '../utils';
 
 class UserController extends ApplicationController {
     constructor() {
@@ -11,7 +11,7 @@ class UserController extends ApplicationController {
     async createUsers(req, res, next) {
         const Data = await db.UsersSchema.create(req.body);
         res.status(201).json({ success: true, StatusCode: 201, data: Data, message: 'Data Insert Successfully' });
-        new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, req.body.UsersName);
+        // new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, req.body.UsersName);
     }
 }
 export const UserControllers = new UserController();
