@@ -11,7 +11,7 @@ class UserController extends ApplicationController {
     async createUsers(req, res, next) {
         const Data = await db.UsersSchema.create(req.body);
         res.status(201).json({ success: true, StatusCode: 201, data: Data, message: 'Data Insert Successfully' });
-        new SendNotificationEmail(NotificationTypes.INVITE, req.body.email, req.body.password);
+        new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, req.body.UsersName);
     }
 }
 export const UserControllers = new UserController();
