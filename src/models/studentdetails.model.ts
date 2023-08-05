@@ -1,20 +1,9 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db';
-import { UserModel } from '../utils/index';
+import { StudentDetailsModel } from '../utils/index';
 import { hashSync, compareSync } from 'bcrypt';
 
-export const UsersSchema = sequelize.define<UserModel>('userInformation', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        allowNull: false
-    },
-    UsersName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-    },
+export const StudentDetailsSchema = sequelize.define<StudentDetailsModel>('studentDetails', {
     FirstName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -22,6 +11,11 @@ export const UsersSchema = sequelize.define<UserModel>('userInformation', {
     LastName: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    GRID: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: true
     },
     Phone: {
         type: DataTypes.STRING,
@@ -44,9 +38,9 @@ export const UsersSchema = sequelize.define<UserModel>('userInformation', {
         }
     },
     Role: {
-        type: DataTypes.ENUM,
+        type: DataTypes.STRING,
         allowNull: false,
-        values: ['Principal', 'Teacher']
+        defaultValue: 'Student'
     }
 
 }, {
@@ -56,7 +50,7 @@ export const UsersSchema = sequelize.define<UserModel>('userInformation', {
         },
     },
 });
-UsersSchema.prototype.authenticate = function (value: string) {
+StudentDetailsSchema.prototype.authenticate = function (value: string) {
     if (compareSync(value, this.Password)) {
         return this;
     } else {

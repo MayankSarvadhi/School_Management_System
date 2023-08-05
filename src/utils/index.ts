@@ -1,7 +1,17 @@
 import { DATE_FORMATE } from './dateFormate';
 import AppError from './appErrorGenerator';
 import { ErrorType } from './errorTypes';
-import { UserModel, AuthModel, ClassModel, AttendanceModel, LectureModel, ReportingModel, StudentsModel } from './Interface';
+import { NotificationTypes, SendNotificationEmail } from './NotificationGenerator';
+import {
+    UserModel,
+    AuthModel,
+    ClassModel,
+    AttendanceModel,
+    LectureModel,
+    ReportingModel,
+    StudentsModel,
+    StudentDetailsModel
+} from './Interface';
 import { USER_ROLE } from './usersRole';
 
 export {
@@ -15,5 +25,8 @@ export {
     AttendanceModel,
     LectureModel,
     ReportingModel,
-    StudentsModel
+    StudentsModel,
+    StudentDetailsModel,
+    NotificationTypes,
+    SendNotificationEmail
 };

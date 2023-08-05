@@ -2,13 +2,24 @@ import { Model } from 'sequelize';
 
 export interface UserModel extends Model {
     id: number;
-    UserName: string;
+    UsersName: string;
     FirstName: string;
     LastName: string;
     Phone: string;
     Email: string;
     Password: string;
     Role: 'Principal' | 'Teacher' | 'Student';
+    authenticate(Password: string): boolean | string;
+}
+
+export interface StudentDetailsModel extends Model {
+    FirstName: string;
+    LastName: string;
+    GRID: number;
+    Phone: string;
+    Email: string;
+    Password: string;
+    Role:'Student';
     authenticate(Password: string): boolean | string;
 }
 

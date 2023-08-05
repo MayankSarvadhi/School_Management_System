@@ -7,20 +7,45 @@ export const ValidationSchema = (req, res, next) => {
         UsersName: Joi.string().required(),
         FirstName: Joi.string().required(),
         LastName: Joi.string().required(),
-        Phone: Joi.string().min(9).max(9).required(),
+        Phone: Joi.string().pattern(/^\+[0-9]{1,}$/).length(13).required().messages({
+            'string.pattern.base': 'Please provide valid phone number with +91 formate',
+            'string.empty': 'phone number cannot be empty',
+            'string.length': 'Please provide 10 digits phone number'
+        }),
         Email: Joi.string().min(10).email().required(),
         Password: Joi.string()
             .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)
-            .min(6)
             .required()
             .messages({
                 'string.pattern.base': 'Password should be this type contain like ex:- Abc@123  ',
-                'string.empty': 'Password cannot be empty',
-                'any.required': 'Password is required',
+                'string.empty': 'Password cannot be empty'
             }),
-        Role: Joi.string().valid('Principal', 'Teacher', 'Student').required()
+        Role: Joi.string().valid('Principal', 'Teacher').required()
     });
     validateReq(req, next, userSchema);
+};
+
+export const StudentValidation = (req, res, next) => {
+    const studentsSchema = Joi.object({
+        FirstName: Joi.string().required(),
+        LastName: Joi.string().required(),
+        GRID: Joi.number().max(10).required(),
+        Phone: Joi.string().pattern(/^\+[0-9]{1,}$/).length(13).required().messages({
+            'string.pattern.base': 'Please provide valid phone number with +91 formate',
+            'string.empty': 'phone number cannot be empty',
+            'string.length': 'Please provide 10 digits phone number'
+        }),
+        Email: Joi.string().min(10).email().required(),
+        Password: Joi.string()
+            .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)
+            .required()
+            .messages({
+                'string.pattern.base': 'Password should be this type contain like ex:- Abc@123  ',
+                'string.empty': 'Password cannot be empty'
+            }),
+        Role: Joi.string().valid('Student').required()
+    });
+    validateReq(req, next, studentsSchema);
 };
 
 export const ClassValidation = (req, res, next) => {

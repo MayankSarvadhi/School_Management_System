@@ -7,6 +7,7 @@ import { AttendanceSchema } from './attendance.model';
 import { LectureSchema } from './lecture.model';
 import { ReportingSchema } from './reporting.model';
 import { StudentsSchema } from './students.model';
+import { StudentDetailsSchema } from './studentdetails.model';
 
 export const db = {
     Sequelize,
@@ -17,7 +18,8 @@ export const db = {
     AttendanceSchema,
     LectureSchema,
     ReportingSchema,
-    StudentsSchema
+    StudentsSchema,
+    StudentDetailsSchema: StudentDetailsSchema
 };
 
 // db.sequelize.sync({ force: true });

@@ -8,7 +8,7 @@ import { USER_ROLE } from '../utils';
 
 UserRoutes.post('/',
     ValidationSchema,
-    asyncWrapper(UserControllers.create.bind(UserControllers))
+    asyncWrapper(UserControllers.createUsers)
 );
 
 UserRoutes.delete('/:id',
