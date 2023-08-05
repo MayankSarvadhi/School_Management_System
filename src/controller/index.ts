@@ -4,8 +4,9 @@ import { ClassControllers } from './class.controller';
 import { AttendanceControllers } from './attendance.controller';
 import { LectureControllers } from './lecture.controller';
 import { ReportingControllers } from './reporting.controller';
-import { StudentControllers } from './student.controller';
+import { StudentControllers } from './teacher.controller';
 import { StudentScheduleControllers } from './studentSchedule.controller';
+import { StudentDetailsControllers } from './studentDetails.controller';
 
 export {
     UserControllers,
@@ -15,5 +16,6 @@ export {
     LectureControllers,
     ReportingControllers,
     StudentControllers,
-    StudentScheduleControllers
+    StudentScheduleControllers,
+    StudentDetailsControllers
 };
