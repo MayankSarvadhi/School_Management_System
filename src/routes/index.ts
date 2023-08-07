@@ -46,10 +46,7 @@ routes.use(END_POINTS.SCHEDULE,
     permit(USER_ROLE.STUDENT),
     StudentsScheduleRoutes
 );
-routes.use(END_POINTS.STUDENT_DETAILS,
-    passport.authenticate('jwt',{ session: false }),
-    StudentDetailsRoutes
-);
+routes.use(END_POINTS.STUDENT_DETAILS, StudentDetailsRoutes);
 
 const invalidedRouter = asyncWrapper((req, res, next) => {
     return next(new AppError(`${req.url} - Bad Request URL not Found`, 'not_found'));

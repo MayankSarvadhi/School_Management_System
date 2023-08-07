@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-len */
 import nodemailer, { Transporter } from 'nodemailer';
 import AppError from './appErrorGenerator';
@@ -21,21 +22,45 @@ const transporter: Transporter = nodemailer.createTransport({
 
 export class SendNotificationEmail {
 
-    constructor(types: string, emails: string, extra:string) {
+    constructor(types: string, emails: string, extra: string, token: string) {
         let subject = '', htmlContent = '';
         switch (types) {
 
             case NotificationTypes.INVITE:
                 subject = 'Invitation to Our App';
                 htmlContent = `
-                        <h1>Invite Notification</h1>
-                        <p>Hello there!</p>
-                        <p>You have been invited to join our app. Click the link below to create your new password.</p>
-                        <p>This password or link never shar to other person</p>
-                        <p>Invitation Link: ${ extra }</p>
-                        <p>Regards,</p>
-                        
-                        <p>Your App Team</p>`;
+                        <html>
+            <head>
+                <style>
+                    /* Add your CSS styles here */
+                    .email-container {
+                        background-color: #f5f5f5;
+                        padding: 20px;
+                        border-radius: 5px;
+                        font-family: Arial, sans-serif;
+                    }
+                    .button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #007bff;
+                        color: #fff !important;
+                        text-decoration: none;
+                        border-radius: 5px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="email-container">
+                    <h1>Invite Notification</h1>
+                    <p>Hello there!</p>
+                    <p>You have been added to the organization in Your School App by the organization's admin Principal.</p>
+                    <p>This password or link should never be shared with others.</p>
+                    <a class="button" href="${extra}">Create Password</a>
+                    <p>Regards,</p>
+                    <p>Your App Team</p>
+                </div>
+            </body>
+            </html>`;
                 break;
 
             case NotificationTypes.MESSAGE:
@@ -78,7 +103,6 @@ export class SendNotificationEmail {
                 logger.info(`Email sent successfully to ${emails}`);
 
             } catch (err) {
-                console.log(err);
                 logger.error(`Error sending email: ${err}`);
             }
         })();
