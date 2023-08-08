@@ -13,6 +13,7 @@ import { ReportingRoutes } from './reporting.routes';
 import { StudentsRoutes } from './teacher.routes';
 import { StudentsScheduleRoutes } from './studentSchedule.routes';
 import { StudentDetailsRoutes } from './studentDetails.routes';
+import { SubjectsRoutes } from './subject.routes';
 import passport from 'passport';
 
 routes.use(END_POINTS.USER, UserRoutes);
@@ -47,6 +48,11 @@ routes.use(END_POINTS.SCHEDULE,
     StudentsScheduleRoutes
 );
 routes.use(END_POINTS.STUDENT_DETAILS, StudentDetailsRoutes);
+routes.use(END_POINTS.SUBJECT,
+    passport.authenticate('jwt', { session: false }),
+    permit(USER_ROLE.PRINCIPAL),
+    SubjectsRoutes
+);
 
 const invalidedRouter = asyncWrapper((req, res, next) => {
     return next(new AppError(`${req.url} - Bad Request URL not Found`, 'not_found'));

@@ -59,3 +59,14 @@ export interface StudentsModel extends Model {
     ClassID : number;
     StudentID : number;
 }
+
+export interface SubjectModel extends Model{
+    SubjectName: string;
+    TeacherID: number;
+}
+
+export interface HolidaysModel extends Model{
+    HoliDayName: string;
+    Date: number;
+    Description: string;
+}

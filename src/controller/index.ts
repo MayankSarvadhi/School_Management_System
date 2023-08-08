@@ -7,6 +7,7 @@ import { ReportingControllers } from './reporting.controller';
 import { StudentControllers } from './teacher.controller';
 import { StudentScheduleControllers } from './studentSchedule.controller';
 import { StudentDetailsControllers } from './studentDetails.controller';
+import { SubjectControllers } from './subject.controller';
 
 export {
     UserControllers,
@@ -17,5 +18,6 @@ export {
     ReportingControllers,
     StudentControllers,
     StudentScheduleControllers,
-    StudentDetailsControllers
+    StudentDetailsControllers,
+    SubjectControllers
 };

@@ -12,7 +12,9 @@ import {
     LectureModel,
     ReportingModel,
     StudentsModel,
-    StudentDetailsModel
+    StudentDetailsModel,
+    SubjectModel,
+    HolidaysModel
 } from './Interface';
 
 export {
@@ -31,6 +33,8 @@ export {
     NotificationTypes,
     SendNotificationEmail,
     checkExpJwt,
-    CreteToken
+    CreteToken,
+    SubjectModel,
+    HolidaysModel
 
 };

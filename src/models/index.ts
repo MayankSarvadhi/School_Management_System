@@ -8,6 +8,7 @@ import { LectureSchema } from './lecture.model';
 import { ReportingSchema } from './reporting.model';
 import { StudentsSchema } from './students.model';
 import { StudentDetailsSchema } from './studentdetails.model';
+import { SubjectSchema } from './subject.model';
 
 export const db = {
     Sequelize,
@@ -19,7 +20,8 @@ export const db = {
     LectureSchema,
     ReportingSchema,
     StudentsSchema,
-    StudentDetailsSchema: StudentDetailsSchema
+    StudentDetailsSchema,
+    SubjectSchema
 };
 
-// db.sequelize.sync({ force: true });
+// db.sequelize.sync({ force: false });

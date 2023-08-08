@@ -59,11 +59,12 @@ export const ClassValidation = (req, res, next) => {
 };
 
 export const AttendanceValidation = (req, res, next) => {
-    const attendanceSchema = Joi.object({
-        Status: Joi.string().valid('present', 'absent').required(),
-        Date: Joi.string().required(),
-        StudentID: Joi.number().required()
-    });
+    const attendanceSchema = Joi.array().items(
+        Joi.object({
+            Status: Joi.string().valid('present', 'absent').required(),
+            Date: Joi.string().required(),
+            StudentID: Joi.number().required()
+        })).min(1).required();
     validateReq(req, next, attendanceSchema);
 };
 
@@ -90,6 +91,14 @@ export const PasswordUpdateValidation = (req, res, next) => {
         Password: new CommanValidationFilter().password(),
     });
     validateReq(req, next, studentsSchemas);
+};
+
+export const SubjectValidation = (req, res, next) => {
+    const SubjectSchema = Joi.object({
+        SubjectName: Joi.string().required(),
+        TeacherID: Joi.string().required()
+    });
+    validateReq(req, next, SubjectSchema);
 };
 
 export const LectureScheduleValidator = (WeekDay, Time, ClassName) => {

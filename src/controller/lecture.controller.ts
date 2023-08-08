@@ -10,12 +10,13 @@ class LectureController extends ApplicationController {
 
     async assignLectureSchedule(req, res, next) {
         const { ClassID, WeekDay, Time } = req.body;
-        const ClassName = await db.ClassSchema.findOne({ where: { id: ClassID }});
+        const { ClassName } = await db.ClassSchema.findOne({ where: { ClassTeacher: req.user.id }});
         const weekDay = new Date(WeekDay).getDay();
-        LectureScheduleValidator(weekDay, Time ,ClassName);
-        const lecture = await db.LectureSchema.create({ ClassID, weekDay, Time });
-        return res.status(201).json({ message: 'Lecture scheduled successfully', lecture });
+        const done = LectureScheduleValidator(weekDay, Time, ClassName);
+        if (done.isValid === true) {
+            const lecture = await db.LectureSchema.create(req.body);
+            return res.status(201).json({ message: 'Lecture scheduled successfully', lecture });
+        }
     }
-
 }
 export const LectureControllers = new LectureController();

@@ -16,11 +16,13 @@ export const AttendanceSchema = sequelize.define<AttendanceModel>('AttendanceDat
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'userInformations',
+            model: 'studentDetails',
             key: 'id'
         }
     }
 }, {
+    timestamps: true,
+
     indexes: [{
         unique: true,
         fields: ['StudentID', 'Date']

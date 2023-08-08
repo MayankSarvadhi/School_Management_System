@@ -1,0 +1,1116 @@
+{
+	"info": {
+		"_postman_id": "c7e2ebed-914e-406a-a677-d98e98454a45",
+		"name": "School_Manegment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28042243"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "addUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"UsersName\":\"guttu\",\n    \"FirstName\":\"Mayass\",\n    \"LastName\":\"hedni\",\n    \"Phone\":\"+919925163578\",\n    \"Email\":\"keval.sarvadhi@gmail.com\",\n    \"Password\":\"Abc@123\",   \n    \"Role\":\"Teacher\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/user",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const responce = pm.response.json();",
+									"pm.environment.set(\"School_Token\", responce.data);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Email\":\"bhargav1.sarvadhi@gmail.com\",\n    \"Password\":\"Abc@123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/auth/login",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/user/2",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/auth/logout",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/user",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password by mail",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Password\":\"Abc@789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjkxNDAxNjgxLCJleHAiOjE2OTE0ODgwODF9.wQwtpObW6yvG1aDOWm57qnK7fFt-Xfz-o8YIvgMFMns",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"3",
+								"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjkxNDAxNjgxLCJleHAiOjE2OTE0ODgwODF9.wQwtpObW6yvG1aDOWm57qnK7fFt-Xfz-o8YIvgMFMns"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Class",
+			"item": [
+				{
+					"name": "add class",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ClassName\": \"12\",\n    \"Grade\": \"B\",\n    \"ClassTeacher\": 6\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/class",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteClass",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/class/6",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"class",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Class",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ClassName\": \"physics\",\n    \"Grade\": \"12-A\",\n    \"ClassTeacher\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/class/3",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"class",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all classes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/class",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"class"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attendance",
+			"item": [
+				{
+					"name": "taking attendance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n    \"Status\":\"present\",\n    \"Date\":\"2023-08-08\",\n    \"StudentID\":6\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/attendance",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"attendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete attendance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/attendance/13",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"attendance",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update attendance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{\n    \"Status\":\"absent\",\n    \"Date\":\"2023-08-08\",\n    \"StudentID\":6\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/attendance/3",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"attendance",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all attendence",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/Attendance",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"Attendance"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lecture",
+			"item": [
+				{
+					"name": "add lecture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"WeekDay\":\"2023-08-11\",\n    \"Time\":\"08:00\",\n    \"ClassID\":2\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/lecture",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"lecture"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete lacture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/lecture/7",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"lecture",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update lecture",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"WeekDay\":\"2023-08-05\",\n    \"Time\":\"06:00 AM\",\n    \"ClassID\":7\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/lecture/9",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"lecture",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all lectures",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/lecture",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"lecture"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Reporting",
+			"item": [
+				{
+					"name": "add reporting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"TeacherID\":1,\n    \"StudentID\":12,\n    \"Description\":\"Very Good Students\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/reporting",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"reporting"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete reporting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/reporting/2",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"reporting",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update reporting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"TeacherID\":1,\n    \"StudentID\":2,\n    \"Description\":\"Very bed Students\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/reporting/3",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"reporting",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all reporting",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/reporting",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"reporting"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "add student in class",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ClassID\": 5,\n    \"StudentID\":12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/student",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "remove student from class",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/student/5",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"student",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get students",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/student/5",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"student",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "schedule",
+			"item": [
+				{
+					"name": "Student view Schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/schedule/?2023-08-04",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"schedule",
+								""
+							],
+							"query": [
+								{
+									"key": "2023-08-04",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "StudentsDetailsCreate",
+			"item": [
+				{
+					"name": "add students details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FirstName\":\"Mayank\",\n    \"LastName\":\"Dhorajiya\",\n    \"GRID\":1183,\n    \"Phone\":\"+919958016524\",\n    \"Password\":\"Abc@123\",\n    \"Email\":\"mayank3.sarvadhi@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/details",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"details"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update student password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Password\":\"Abc@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/details/18/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTY5MTM5OTUwNSwiZXhwIjoxNjkxNDg1OTA1fQ.YVsbeski-JKvZD7utXYkLZaAlC0BNkNh9-8uwtHTa1w",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"details",
+								"18",
+								"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTY5MTM5OTUwNSwiZXhwIjoxNjkxNDg1OTA1fQ.YVsbeski-JKvZD7utXYkLZaAlC0BNkNh9-8uwtHTa1w"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login student",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subject",
+			"item": [
+				{
+					"name": "add subject",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"SubjectName\":\"physics\",\n    \"TeacherID\":\"6\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/subject",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"subject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete subject",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/subject/33",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"subject",
+								"33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"SubjectName\":\"Science\",\n    \"TeacherID\":\"6\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/subject/2",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"subject",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all subject",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/subject",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"subject"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Holidays",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

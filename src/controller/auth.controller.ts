@@ -13,7 +13,8 @@ class AuthController extends ApplicationController {
 
     async login(req, res, next) {
         const { body: { Email, Password }} = req;
-        const result = await db.UsersSchema.findOne({ where: { Email }});
+        const result = await db.UsersSchema.findOne({ where: { Email }})
+            || await db.StudentDetailsSchema.findOne({ where: { Email }});
 
         if (result && result.authenticate(Password)) {
             const payload = {
