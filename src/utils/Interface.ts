@@ -20,7 +20,7 @@ export interface StudentDetailsModel extends Model {
     Phone: string;
     Email: string;
     Password: string;
-    Role:'Student';
+    Role: 'Student';
     authenticate(Password: string): boolean | string;
 }
 
@@ -56,17 +56,27 @@ export interface ReportingModel extends Model {
 export interface StudentsModel extends Model {
     classDetail: any;
     length: number;
-    ClassID : number;
-    StudentID : number;
+    ClassID: number;
+    StudentID: number;
 }
 
-export interface SubjectModel extends Model{
+export interface SubjectModel extends Model {
     SubjectName: string;
     TeacherID: number;
 }
 
-export interface HolidaysModel extends Model{
+export interface HolidaysModel extends Model {
     HoliDayName: string;
     Date: number;
     Description: string;
+}
+
+export interface LeaveModel extends Model {
+    TeacherId: number;
+    StudentId: number;
+    Role: 'Teacher' | 'Student';
+    StartDate: Date;
+    EndDate: Date;
+    Reason: string;
+    Status: 'pending' | 'approved' | 'rejected';
 }

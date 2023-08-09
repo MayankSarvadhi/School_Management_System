@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db';
 import { HolidaysModel } from '../utils';
 
-export const SubjectSchema = sequelize.define<HolidaysModel>('HolidayDetails', {
+export const HoliDaySchema = sequelize.define<HolidaysModel>('HolidayDetails', {
     HoliDayName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -18,6 +18,6 @@ export const SubjectSchema = sequelize.define<HolidaysModel>('HolidayDetails', {
 }, {
     indexes: [{
         unique: true,
-        fields: ['HoliDayName', 'Date']
+        fields: ['Date', 'HoliDayName']
     }]
 });

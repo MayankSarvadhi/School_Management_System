@@ -9,7 +9,7 @@ export const StudentDetailsRoutes = express.Router();
 StudentDetailsRoutes.post(
     '/',
     passport.authenticate('jwt', { session: false }),
-    permit(USER_ROLE.TEACHER),
+    permit([USER_ROLE.TEACHER]),
     StudentValidation,
     asyncWrapper(StudentDetailsControllers.createStudents)
 );
@@ -17,14 +17,14 @@ StudentDetailsRoutes.post(
 StudentDetailsRoutes.delete(
     '/:id',
     passport.authenticate('jwt', { session: false }),
-    permit(USER_ROLE.TEACHER),
+    permit([USER_ROLE.TEACHER]),
     asyncWrapper(StudentDetailsControllers.delete.bind(StudentDetailsControllers))
 );
 
 StudentDetailsRoutes.put(
     '/:id',
     passport.authenticate('jwt', { session: false }),
-    permit(USER_ROLE.TEACHER),
+    permit([USER_ROLE.TEACHER]),
     StudentValidation,
     asyncWrapper(StudentDetailsControllers.update.bind(StudentDetailsControllers))
 );

@@ -26,13 +26,7 @@ class AuthController extends ApplicationController {
                 process.env.JWT_SECRET,
                 { expiresIn: process.env.JWT_EXP, algorithm: 'HS256' }
             );
-            const [rowsAffected] = await db.AuthSchema.update(
-                { Token: token },
-                { where: { userID: result.id }}
-            );
-            if (rowsAffected === 0) {
-                await db.AuthSchema.create({ Token: token, userID: payload.id });
-            }
+            req.session.token = token;
             return res.status(200).json({
                 success: true,
                 data: token,
@@ -44,18 +38,17 @@ class AuthController extends ApplicationController {
     }
 
     async logout(req, res, next) {
-        const { user: { id }} = req;
-
-        const out = await db.AuthSchema.destroy({ where: { userID: id }});
-        if (out) {
+        if (req.session.token === undefined) throw new AppError('Users Already Logout', 'invalid_request');
+        req.session.destroy(err => {
+            if (err) {
+                return next(new AppError('logout Failed', 'invalid_request'));
+            }
             return res.status(200).json({
                 success: true,
                 statusCode: 200,
                 message: 'User Logged out Successfully'
             });
-        } else {
-            return next(new AppError('logout Failed', 'invalid_request'));
-        }
+        });
     }
 }
 export const AuthControllers = new AuthController();

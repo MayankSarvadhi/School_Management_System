@@ -14,13 +14,15 @@ import { StudentsRoutes } from './teacher.routes';
 import { StudentsScheduleRoutes } from './studentSchedule.routes';
 import { StudentDetailsRoutes } from './studentDetails.routes';
 import { SubjectsRoutes } from './subject.routes';
+import { HolidaysRoutes } from './holiday.routes';
+import { LeaveRoutes } from './leave.routes';
 import passport from 'passport';
 
 routes.use(END_POINTS.USER, UserRoutes);
 routes.use(END_POINTS.AUTH, AuthRoutes);
 routes.use(END_POINTS.CLASS,
     passport.authenticate('jwt', { session: false }),
-    permit(USER_ROLE.PRINCIPAL),
+    permit([USER_ROLE.PRINCIPAL]),
     ClassRoutes
 );
 routes.use(END_POINTS.ATTENDANCE,
@@ -39,19 +41,28 @@ routes.use(END_POINTS.REPORTING,
 );
 routes.use(END_POINTS.STUDENT,
     passport.authenticate('jwt', { session: false }),
-    permit(USER_ROLE.TEACHER),
+    permit([USER_ROLE.TEACHER]),
     StudentsRoutes
 );
 routes.use(END_POINTS.SCHEDULE,
     passport.authenticate('jwt', { session: false }),
-    permit(USER_ROLE.STUDENT),
+    permit([USER_ROLE.STUDENT]),
     StudentsScheduleRoutes
 );
 routes.use(END_POINTS.STUDENT_DETAILS, StudentDetailsRoutes);
 routes.use(END_POINTS.SUBJECT,
     passport.authenticate('jwt', { session: false }),
-    permit(USER_ROLE.PRINCIPAL),
+    permit([USER_ROLE.PRINCIPAL]),
     SubjectsRoutes
+);
+routes.use(END_POINTS.HOLIDAY,
+    passport.authenticate('jwt', { session: false }),
+    permit([USER_ROLE.PRINCIPAL]),
+    HolidaysRoutes
+);
+routes.use(END_POINTS.LEAVE,
+    passport.authenticate('jwt', { session: false }),
+    LeaveRoutes
 );
 
 const invalidedRouter = asyncWrapper((req, res, next) => {

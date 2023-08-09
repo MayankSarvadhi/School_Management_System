@@ -101,6 +101,24 @@ export const SubjectValidation = (req, res, next) => {
     validateReq(req, next, SubjectSchema);
 };
 
+export const LeaveValidation = (req, res, next) => {
+    const LeaveSchema = Joi.object({
+        StartDate: Joi.string().required(),
+        EndDate: Joi.string().required(),
+        Reason: Joi.string().required(),
+    });
+    validateReq(req, next, LeaveSchema);
+};
+
+export const HoliDaysValidation = (req,res,next) =>{
+    const HolidaysSchema = Joi.object({
+        HoliDayName: Joi.string().required(),
+        Date: Joi.string().required(),
+        Description: Joi.string().required()
+    });
+    validateReq(req, next, HolidaysSchema);
+};
+
 export const LectureScheduleValidator = (WeekDay, Time, ClassName) => {
 
     const isSaturday = WeekDay === 6;

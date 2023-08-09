@@ -10,18 +10,13 @@ const opts = {
 };
 
 export default passport.use(new Strategy(opts, async function (jwtPayload, done) {
-
-    const isAuth = await db.AuthSchema.findOne({ where: { userID: jwtPayload.id }});
-    if (isAuth) {
-        try {
-            const user = await db.UsersSchema.findByPk(jwtPayload.id);
-            if (user) {
-                return done(null, user);
-            }
-        } catch (error) {
-            return done(error, false);
+    try {
+        const user = await db.UsersSchema.findOne({ where: { Email: jwtPayload.Email }})
+            || await db.StudentDetailsSchema.findOne({ where: { Email: jwtPayload.Email }});
+        if (user) {
+            return done(null, user);
         }
-    } else {
-        return done(null, false);
+    } catch (error) {
+        return done(error, false);
     }
 }));

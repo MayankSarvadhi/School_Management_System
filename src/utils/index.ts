@@ -14,7 +14,8 @@ import {
     StudentsModel,
     StudentDetailsModel,
     SubjectModel,
-    HolidaysModel
+    HolidaysModel,
+    LeaveModel
 } from './Interface';
 
 export {
@@ -35,6 +36,7 @@ export {
     checkExpJwt,
     CreteToken,
     SubjectModel,
-    HolidaysModel
+    HolidaysModel,
+    LeaveModel
 
 };

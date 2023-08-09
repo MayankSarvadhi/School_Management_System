@@ -9,6 +9,8 @@ import { ReportingSchema } from './reporting.model';
 import { StudentsSchema } from './students.model';
 import { StudentDetailsSchema } from './studentdetails.model';
 import { SubjectSchema } from './subject.model';
+import { HoliDaySchema } from './holidays.model';
+import { LeaveSchema } from './leave.model';
 
 export const db = {
     Sequelize,
@@ -21,7 +23,9 @@ export const db = {
     ReportingSchema,
     StudentsSchema,
     StudentDetailsSchema,
-    SubjectSchema
+    SubjectSchema,
+    HoliDaySchema,
+    LeaveSchema
 };
 
 // db.sequelize.sync({ force: false });

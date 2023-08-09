@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"UsersName\":\"guttu\",\n    \"FirstName\":\"Mayass\",\n    \"LastName\":\"hedni\",\n    \"Phone\":\"+919925163578\",\n    \"Email\":\"keval.sarvadhi@gmail.com\",\n    \"Password\":\"Abc@123\",   \n    \"Role\":\"Teacher\"\n}",
+							"raw": "{\n    \"UsersName\":\"guttus\",\n    \"FirstName\":\"Mayass\",\n    \"LastName\":\"hedni\",\n    \"Phone\":\"+919925163578\",\n    \"Email\":\"kevals.sarvadhi@gmail.com\",\n    \"Password\":\"Abc@123\",   \n    \"Role\":\"Teacher\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1103,10 +1103,276 @@
 			"name": "Holidays",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "add holidays",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"HoliDayName\": \"Rakshabandhans\",\n    \"Date\": \"2023-08-12\",\n    \"Description\": \"good festival\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/holiday",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"holiday"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all holidays",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/holiday",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"holiday"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete holidays",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/holiday/3",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"holiday",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateHolidays",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"HoliDayName\": \"independeant Days\",\n    \"Date\": \"2023-08-15\",\n    \"Description\": \"good festival\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/holiday/1",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"holiday",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "leave",
+			"item": [
+				{
+					"name": "add Leave",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"StartDate\": \"2023-08-21\",\n    \"EndDate\": \"2023-08-23\",\n    \"Reason\": \"For Headack\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/leave",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"leave"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete leave",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/leave/1",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"leave",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateLeave",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"StartDate\": \"2023-08-01\",\n    \"EndDate\": \"2023-08-05\",\n    \"Reason\": \"For Headack\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/leave/2",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"leave",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Teacher or Student Leave",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/leave/student",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"leave",
+								"student"
+							]
+						}
 					},
 					"response": []
 				}

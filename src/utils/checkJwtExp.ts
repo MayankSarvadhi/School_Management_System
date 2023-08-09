@@ -4,10 +4,10 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 const tokenStore = {};
-const expirationTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+const expirationTime = new Date().getTime() + 10 * 60 * 1000;
 
 export function CreteToken(id) {
-    const token = jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '10m' });
     tokenStore[token] = expirationTime;
     return token;
 }
