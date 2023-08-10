@@ -1,7 +1,6 @@
 import { Sequelize } from 'sequelize';
 import { sequelize } from '../config/db';
 import { UsersSchema } from './user.Model';
-import { AuthSchema } from './auth.model';
 import { ClassSchema } from './class.Model';
 import { AttendanceSchema } from './attendance.model';
 import { LectureSchema } from './lecture.model';
@@ -16,7 +15,6 @@ export const db = {
     Sequelize,
     sequelize,
     UsersSchema,
-    AuthSchema,
     ClassSchema,
     AttendanceSchema,
     LectureSchema,
@@ -28,4 +26,4 @@ export const db = {
     LeaveSchema
 };
 
-// db.sequelize.sync({ force: false });
+db.sequelize.sync();

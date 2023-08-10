@@ -13,7 +13,7 @@ export const ClassSchema = sequelize.define<ClassModel>('classDetails', {
         allowNull: false,
     },
     ClassTeacher: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
         unique: true,
         references: {
@@ -28,4 +28,5 @@ export const ClassSchema = sequelize.define<ClassModel>('classDetails', {
     }]
 });
 
-ClassSchema.hasMany(LectureSchema, { foreignKey: 'ClassID' });
+ClassSchema.hasMany(LectureSchema, { foreignKey: 'ClassId' });
+

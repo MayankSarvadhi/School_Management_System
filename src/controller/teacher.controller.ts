@@ -9,7 +9,7 @@ class StudentController extends ApplicationController {
 
     async removeStudentsFromClass(req, res, next) {
         const { params: { id }} = req;
-        const removeRecord = await db.StudentsSchema.destroy({ where: { StudentID: id }});
+        const removeRecord = await db.StudentsSchema.destroy({ where: { StudentId: id }});
         if (removeRecord) {
             return res.json({ success: true, statusCode: 200, data: removeRecord, message: 'Data deleted Successfully' });
         } else {
@@ -18,12 +18,12 @@ class StudentController extends ApplicationController {
     }
 
     async getParticularStudents(req, res, next) {
-        const { params: { ClassID }} = req;
-        const FilterStudents = await db.StudentsSchema.findAll({ where: { ClassID }});
+        const { params: { ClassId }} = req;
+        const FilterStudents = await db.StudentsSchema.findAll({ where: { ClassId }});
         if (FilterStudents) {
             return res.status(200).json({ success: true, statusCode: 200, data: FilterStudents, message: 'Data Fetch SuccessFully' });
         } else {
-            return next(new AppError(`id = ${ClassID}  not found/Match`, 'not_found'));
+            return next(new AppError(`id = ${ClassId}  not found/Match`, 'not_found'));
         }
     }
 

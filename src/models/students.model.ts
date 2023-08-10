@@ -1,10 +1,10 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db';
 import { StudentsModel } from '../utils';
-import { ClassSchema } from './class.Model';
+import { StudentDetailsSchema } from './studentdetails.model';
 
-export const StudentsSchema = sequelize.define<StudentsModel>('StudentsClassDetails', {
-    ClassID: {
+export const StudentsSchema = sequelize.define<StudentsModel>('teacherClassData', {
+    ClassId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -12,19 +12,18 @@ export const StudentsSchema = sequelize.define<StudentsModel>('StudentsClassDeta
             key: 'id'
         }
     },
-    StudentID: {
-        type: DataTypes.INTEGER,
+    StudentId: {
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'userInformations',
+            model: 'studentDetails',
             key: 'id'
         }
     }
 }, {
     indexes: [{
         unique: true,
-        fields: ['StudentID']
+        fields: ['StudentId']
     }]
 });
-
-StudentsSchema.belongsTo(ClassSchema, { foreignKey: 'ClassID' });
+StudentDetailsSchema.belongsTo(StudentsSchema, { foreignKey: 'StudentId' });

@@ -1,10 +1,11 @@
 import { Model } from 'sequelize';
 
 export interface UserModel extends Model {
-    id: number;
+    id: string;
     UsersName: string;
     FirstName: string;
     LastName: string;
+    Gender: 'Male' | 'Female';
     Phone: string;
     Email: string;
     Password: string;
@@ -13,10 +14,11 @@ export interface UserModel extends Model {
 }
 
 export interface StudentDetailsModel extends Model {
-    id: any;
+    id: string;
     FirstName: string;
     LastName: string;
     GRID: number;
+    Gender: 'Male' | 'Female';
     Phone: string;
     Email: string;
     Password: string;
@@ -24,12 +26,8 @@ export interface StudentDetailsModel extends Model {
     authenticate(Password: string): boolean | string;
 }
 
-export interface AuthModel extends Model {
-    Token: string;
-    UserID: number;
-}
-
 export interface ClassModel extends Model {
+    id: any;
     ClassName: string;
     Grade: string;
     ClassTeacher: string
@@ -38,31 +36,29 @@ export interface ClassModel extends Model {
 export interface AttendanceModel extends Model {
     Status: 'present' | 'absent';
     Date: Date;
-    StudentID: number;
+    StudentId: string;
 }
 
 export interface LectureModel extends Model {
     WeekDay: string;
     Time: string;
-    ClassID: string;
+    ClassId: string;
 }
 
 export interface ReportingModel extends Model {
-    TeacherID: number;
-    StudentID: number;
+    TeacherId: string;
+    StudentId: string;
     Description: string;
 }
 
 export interface StudentsModel extends Model {
-    classDetail: any;
-    length: number;
-    ClassID: number;
-    StudentID: number;
+    ClassId: string;
+    StudentId: string;
 }
 
 export interface SubjectModel extends Model {
     SubjectName: string;
-    TeacherID: number;
+    TeacherId: string;
 }
 
 export interface HolidaysModel extends Model {
@@ -72,8 +68,8 @@ export interface HolidaysModel extends Model {
 }
 
 export interface LeaveModel extends Model {
-    TeacherId: number;
-    StudentId: number;
+    TeacherId: string;
+    StudentId: string;
     Role: 'Teacher' | 'Student';
     StartDate: Date;
     EndDate: Date;

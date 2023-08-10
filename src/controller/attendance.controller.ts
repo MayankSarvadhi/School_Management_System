@@ -18,9 +18,9 @@ class AttendanceController extends ApplicationController {
 
     async signalUpdate(req, res, next) {
         const { id } = req.params;
-        const [{ Status, Date, StudentID }] = req.body;
+        const [{ Status, Date, StudentId }] = req.body;
         const updateAttendance = await db.AttendanceSchema.update(
-            { Status, Date, StudentID }, { where: { id }, returning: true });
+            { Status, Date, StudentId }, { where: { id }, returning: true });
         if (updateAttendance[0] === 1) {
             return res.json({
                 success: true, StatusCode: 200,

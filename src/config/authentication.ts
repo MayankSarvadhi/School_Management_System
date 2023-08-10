@@ -11,8 +11,8 @@ const opts = {
 
 export default passport.use(new Strategy(opts, async function (jwtPayload, done) {
     try {
-        const user = await db.UsersSchema.findOne({ where: { Email: jwtPayload.Email }})
-            || await db.StudentDetailsSchema.findOne({ where: { Email: jwtPayload.Email }});
+        const user = await db.UsersSchema.findByPk(jwtPayload.id)
+            || await db.StudentDetailsSchema.findByPk(jwtPayload.id);
         if (user) {
             return done(null, user);
         }

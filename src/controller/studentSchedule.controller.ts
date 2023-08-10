@@ -23,7 +23,7 @@ class StudentScheduleController {
                     }
                 }]
             }],
-            where: { StudentID: req.user.id }
+            where: { StudentId: req.user.id }
         });
         if (!scheduleData) {
             return next(new AppError('Today has no schedule', 'not_found'));

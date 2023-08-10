@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"UsersName\":\"guttus\",\n    \"FirstName\":\"Mayass\",\n    \"LastName\":\"hedni\",\n    \"Phone\":\"+919925163578\",\n    \"Email\":\"kevals.sarvadhi@gmail.com\",\n    \"Password\":\"Abc@123\",   \n    \"Role\":\"Teacher\"\n}",
+							"raw": "{\n    \"UsersName\":\"F\",\n    \"FirstName\":\"Mayass\",\n    \"LastName\":\"hedni\",\n    \"Phone\":\"+919925163578\",\n    \"Gender\":\"Female\",\n    \"Email\":\"Pincipal@gmail.com\",\n    \"Password\":\"Abc@123\",   \n    \"Role\":\"Principal\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -54,7 +54,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Email\":\"bhargav1.sarvadhi@gmail.com\",\n    \"Password\":\"Abc@123\"\n}\n",
+							"raw": "{\n    \"Email\":\"teacher2@gmail.com\",\n    \"Password\":\"Abc@123\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -216,7 +216,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ClassName\": \"12\",\n    \"Grade\": \"B\",\n    \"ClassTeacher\": 6\n}",
+							"raw": "{\n    \"ClassName\": \"7\",\n    \"Grade\": \"D\",\n    \"ClassTeacher\": \"e6c8e48a-9bff-47d8-9471-6b01f0ce7378\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -349,7 +349,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[{\n    \"Status\":\"present\",\n    \"Date\":\"2023-08-08\",\n    \"StudentID\":6\n}]",
+							"raw": "[\n    {\n        \"Status\": \"present\",\n        \"Date\": \"2023-08-08\",\n        \"StudentId\": \"cf463498-35a5-448d-a6df-5d99c1691772\"\n    }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -413,7 +413,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[{\n    \"Status\":\"absent\",\n    \"Date\":\"2023-08-08\",\n    \"StudentID\":6\n}]",
+							"raw": "[{\n    \"Status\":\"absent\",\n    \"Date\":\"2023-08-08\",\n    \"StudentId\":6\n}]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -482,7 +482,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"WeekDay\":\"2023-08-11\",\n    \"Time\":\"08:00\",\n    \"ClassID\":2\n}   ",
+							"raw": "{\n    \"WeekDay\":\"2023-08-11\",\n    \"Time\":\"08:00\",\n    \"ClassId\":4\n}   ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -546,7 +546,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"WeekDay\":\"2023-08-05\",\n    \"Time\":\"06:00 AM\",\n    \"ClassID\":7\n}   ",
+							"raw": "{\n    \"WeekDay\":\"2023-08-05\",\n    \"Time\":\"06:00 AM\",\n    \"ClassId\":7\n}   ",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -638,7 +638,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"TeacherID\":1,\n    \"StudentID\":12,\n    \"Description\":\"Very Good Students\"\n}",
+							"raw": "{\n    \"TeacherId\":1,\n    \"StudentId\":12,\n    \"Description\":\"Very Good Students\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -702,7 +702,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"TeacherID\":1,\n    \"StudentID\":2,\n    \"Description\":\"Very bed Students\"\n}",
+							"raw": "{\n    \"TeacherId\":1,\n    \"StudentId\":2,\n    \"Description\":\"Very bed Students\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -771,7 +771,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"ClassID\": 5,\n    \"StudentID\":12\n}",
+							"raw": "{\n    \"ClassId\": 3,\n    \"StudentId\":\"1af8d444-e988-4ed1-a37e-cab20dade266\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -907,7 +907,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"FirstName\":\"Mayank\",\n    \"LastName\":\"Dhorajiya\",\n    \"GRID\":1183,\n    \"Phone\":\"+919958016524\",\n    \"Password\":\"Abc@123\",\n    \"Email\":\"mayank3.sarvadhi@gmail.com\"\n}",
+							"raw": "{\n    \"FirstName\":\"demos\",\n    \"LastName\":\"Node\",\n    \"GRID\":2138,\n    \"Gender\":\"Male\",\n    \"Phone\":\"+919958016524\",\n    \"Password\":\"Abc@123\",\n    \"Email\":\"mayank.sarvadhi@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -986,7 +986,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"SubjectName\":\"physics\",\n    \"TeacherID\":\"6\"\n}",
+							"raw": "{\n    \"SubjectName\":\"physics\",\n    \"TeacherId\":\"6\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1050,7 +1050,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"SubjectName\":\"Science\",\n    \"TeacherID\":\"6\"\n}",
+							"raw": "{\n    \"SubjectName\":\"Science\",\n    \"TeacherId\":\"6\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1252,7 +1252,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"StartDate\": \"2023-08-21\",\n    \"EndDate\": \"2023-08-23\",\n    \"Reason\": \"For Headack\"\n}",
+							"raw": "{\n    \"StartDate\": \"2023-08-9\",\n    \"EndDate\": \"2023-08-12\",\n    \"Reason\": \"For Headack\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1371,6 +1371,43 @@
 							"path": [
 								"leave",
 								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "approve or reject leave",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Status\":\"approved\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/leave/5",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"leave",
+								"5"
 							]
 						}
 					},

@@ -10,3 +10,4 @@ LeaveRoutes.get('/teacher', asyncWrapper(LeaveControllers.PrincipalParticularVie
 LeaveRoutes.get('/student', asyncWrapper(LeaveControllers.TeacherParticularView));
 LeaveRoutes.put('/:Id', LeaveValidation, asyncWrapper(LeaveControllers.update.bind(LeaveControllers)));
 LeaveRoutes.delete('/:id', asyncWrapper(LeaveControllers.DeleteLeave));
+LeaveRoutes.patch('/:id',asyncWrapper(LeaveControllers.ApproveLeave));

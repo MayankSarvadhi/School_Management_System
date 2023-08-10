@@ -28,6 +28,7 @@ export const ValidationSchema = (req, res, next) => {
         UsersName: Joi.string().required(),
         FirstName: Joi.string().required(),
         LastName: Joi.string().required(),
+        Gender: Joi.string().valid('Male', 'Female').required(),
         Phone: new CommanValidationFilter().phone(),
         Email: Joi.string().min(10).email().required(),
         Password: new CommanValidationFilter().password(),
@@ -41,6 +42,7 @@ export const StudentValidation = (req, res, next) => {
         FirstName: Joi.string().required(),
         LastName: Joi.string().required(),
         GRID: Joi.number().required(),
+        Gender: Joi.string().valid('Male','Female').required(),
         Phone: new CommanValidationFilter().phone(),
         Email: Joi.string().min(10).email().required(),
         Password: new CommanValidationFilter().password(),
@@ -53,7 +55,7 @@ export const ClassValidation = (req, res, next) => {
     const classSchema = Joi.object({
         ClassName: Joi.string().required(),
         Grade: Joi.string().required(),
-        ClassTeacher: Joi.number().required()
+        ClassTeacher: Joi.string().required()
     });
     validateReq(req, next, classSchema);
 };
@@ -63,7 +65,7 @@ export const AttendanceValidation = (req, res, next) => {
         Joi.object({
             Status: Joi.string().valid('present', 'absent').required(),
             Date: Joi.string().required(),
-            StudentID: Joi.number().required()
+            StudentId: Joi.string().required()
         })).min(1).required();
     validateReq(req, next, attendanceSchema);
 };
@@ -72,15 +74,15 @@ export const LectureValidation = (req, res, next) => {
     const lectureSchemas = Joi.object({
         WeekDay: Joi.string().required(),
         Time: Joi.string().required(),
-        ClassID: Joi.number().required()
+        ClassId: Joi.number().required()
     });
     validateReq(req, next, lectureSchemas);
 };
 
 export const ReportingValidation = (req, res, next) => {
     const ReportingSchemas = Joi.object({
-        TeacherID: Joi.number().required(),
-        StudentID: Joi.number().required(),
+        TeacherId: Joi.string().required(),
+        StudentId: Joi.string().required(),
         Description: Joi.string().required()
     });
     validateReq(req, next, ReportingSchemas);
@@ -96,7 +98,7 @@ export const PasswordUpdateValidation = (req, res, next) => {
 export const SubjectValidation = (req, res, next) => {
     const SubjectSchema = Joi.object({
         SubjectName: Joi.string().required(),
-        TeacherID: Joi.string().required()
+        TeacherId: Joi.string().required()
     });
     validateReq(req, next, SubjectSchema);
 };
@@ -110,7 +112,7 @@ export const LeaveValidation = (req, res, next) => {
     validateReq(req, next, LeaveSchema);
 };
 
-export const HoliDaysValidation = (req,res,next) =>{
+export const HoliDaysValidation = (req, res, next) => {
     const HolidaysSchema = Joi.object({
         HoliDayName: Joi.string().required(),
         Date: Joi.string().required(),

@@ -2,20 +2,20 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db';
 import { ReportingModel } from '../utils';
 
-export const ReportingSchema = sequelize.define<ReportingModel>('ReportDetails', {
-    TeacherID: {
-        type: DataTypes.INTEGER,
+export const ReportingSchema = sequelize.define<ReportingModel>('reportDetails', {
+    TeacherId: {
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
             model: 'userInformations',
             key: 'id'
         }
     },
-    StudentID: {
-        type: DataTypes.INTEGER,
+    StudentId: {
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: 'userInformations',
+            model: 'studentDetails',
             key: 'id'
         }
     },

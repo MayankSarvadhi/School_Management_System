@@ -2,14 +2,9 @@ import { db } from '../models/index';
 import dotenv from 'dotenv';
 dotenv.config();
 import * as jwt from 'jsonwebtoken';
-import { ApplicationController } from './application.controller';
 import { AppError } from '../utils';
 
-class AuthController extends ApplicationController {
-
-    constructor() {
-        super(db.AuthSchema);
-    }
+export class AuthControllers {
 
     async login(req, res, next) {
         const { body: { Email, Password }} = req;
@@ -51,4 +46,3 @@ class AuthController extends ApplicationController {
         });
     }
 }
-export const AuthControllers = new AuthController();

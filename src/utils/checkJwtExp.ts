@@ -15,7 +15,7 @@ export function CreteToken(id) {
 export function checkExpJwt(token) {
     const expirationTime = tokenStore[token];
     if (!expirationTime || new Date().getTime() > expirationTime) {
-        throw new AppError('Token expired or invalid.', 'invalid_request');
+        throw new AppError('Your Link was Expired or Invalid.', 'invalid_request');
     } else {
         return;
     }

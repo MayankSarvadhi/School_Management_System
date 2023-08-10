@@ -4,6 +4,12 @@ import { StudentDetailsModel } from '../utils/index';
 import { hashSync, compareSync } from 'bcrypt';
 
 export const StudentDetailsSchema = sequelize.define<StudentDetailsModel>('studentDetails', {
+    id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+    },
     FirstName: {
         type: DataTypes.STRING,
         allowNull: false
@@ -11,6 +17,11 @@ export const StudentDetailsSchema = sequelize.define<StudentDetailsModel>('stude
     LastName: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    Gender: {
+        type: DataTypes.ENUM,
+        allowNull: false,
+        values: ['Male', 'Female']
     },
     GRID: {
         type: DataTypes.INTEGER,

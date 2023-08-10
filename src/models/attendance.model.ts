@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db';
 import { AttendanceModel } from '../utils';
 
-export const AttendanceSchema = sequelize.define<AttendanceModel>('AttendanceDatas', {
+export const AttendanceSchema = sequelize.define<AttendanceModel>('attendanceData', {
     Status: {
         type: DataTypes.ENUM,
         allowNull: false,
@@ -12,8 +12,8 @@ export const AttendanceSchema = sequelize.define<AttendanceModel>('AttendanceDat
         type: DataTypes.DATEONLY,
         allowNull: false
     },
-    StudentID: {
-        type: DataTypes.INTEGER,
+    StudentId: {
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
             model: 'studentDetails',
@@ -25,6 +25,6 @@ export const AttendanceSchema = sequelize.define<AttendanceModel>('AttendanceDat
 
     indexes: [{
         unique: true,
-        fields: ['StudentID', 'Date']
+        fields: ['StudentId', 'Date']
     }]
 });

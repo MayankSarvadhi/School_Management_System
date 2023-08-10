@@ -14,7 +14,7 @@ class UserController extends ApplicationController {
         const token = CreteToken(Data.id);
         new SendNotificationEmail(
             NotificationTypes.INVITE, req.body.Email,
-            `http://localhost:3000/user/${Data.id}/${token}`,
+            `http://192.168.2.70:3000/user/${Data.id}/${token}`,
             token
         );
     }

@@ -5,10 +5,10 @@ import { hashSync, compareSync } from 'bcrypt';
 
 export const UsersSchema = sequelize.define<UserModel>('userInformation', {
     id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+        type: DataTypes.UUID,
+        allowNull: false,
         primaryKey: true,
-        allowNull: false
+        defaultValue: DataTypes.UUIDV4
     },
     UsersName: {
         type: DataTypes.STRING,
@@ -22,6 +22,11 @@ export const UsersSchema = sequelize.define<UserModel>('userInformation', {
     LastName: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    Gender: {
+        type: DataTypes.ENUM,
+        allowNull: false,
+        values: ['Male', 'Female']
     },
     Phone: {
         type: DataTypes.STRING,

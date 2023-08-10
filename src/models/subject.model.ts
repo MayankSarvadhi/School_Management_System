@@ -7,8 +7,8 @@ export const SubjectSchema = sequelize.define<SubjectModel>('subjectDetails', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    TeacherID: {
-        type: DataTypes.INTEGER,
+    TeacherId: {
+        type: DataTypes.UUID,
         allowNull: false,
         references: {
             model: 'userInformations',
@@ -18,6 +18,6 @@ export const SubjectSchema = sequelize.define<SubjectModel>('subjectDetails', {
 }, {
     indexes: [{
         unique: true,
-        fields: ['SubjectName', 'TeacherID']
+        fields: ['SubjectName', 'TeacherId']
     }]
 });

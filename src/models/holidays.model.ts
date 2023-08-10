@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db';
 import { HolidaysModel } from '../utils';
 
-export const HoliDaySchema = sequelize.define<HolidaysModel>('HolidayDetails', {
+export const HoliDaySchema = sequelize.define<HolidaysModel>('holidayDetails', {
     HoliDayName: {
         type: DataTypes.STRING,
         allowNull: false

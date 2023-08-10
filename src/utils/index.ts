@@ -6,7 +6,6 @@ import { USER_ROLE } from './usersRole';
 import { checkExpJwt, CreteToken } from './checkJwtExp';
 import {
     UserModel,
-    AuthModel,
     ClassModel,
     AttendanceModel,
     LectureModel,
@@ -23,7 +22,6 @@ export {
     AppError,
     ErrorType,
     UserModel,
-    AuthModel,
     USER_ROLE,
     ClassModel,
     AttendanceModel,

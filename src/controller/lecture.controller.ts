@@ -9,8 +9,8 @@ class LectureController extends ApplicationController {
     }
 
     async assignLectureSchedule(req, res, next) {
-        const { ClassID, WeekDay, Time } = req.body;
-        const { ClassName } = await db.ClassSchema.findOne({ where: { ClassTeacher: req.user.id }});
+        const { ClassId, WeekDay, Time } = req.body;
+        const { ClassName } = await db.ClassSchema.findOne({ where: { ClassTeacher: req.user.id } });
         const weekDay = new Date(WeekDay).getDay();
         const done = LectureScheduleValidator(weekDay, Time, ClassName);
         if (done.isValid === true) {

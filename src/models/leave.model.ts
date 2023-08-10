@@ -2,10 +2,11 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db';
 import { LeaveModel } from '../utils';
+import { StudentsSchema } from './students.model';
 
-export const LeaveSchema = sequelize.define<LeaveModel>('LeaveDetails', {
+export const LeaveSchema = sequelize.define<LeaveModel>('leaveDetails', {
     TeacherId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: true,
         references: {
             model: 'userInformations',
@@ -13,7 +14,7 @@ export const LeaveSchema = sequelize.define<LeaveModel>('LeaveDetails', {
         }
     },
     StudentId: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: true,
         references: {
             model: 'studentDetails',
@@ -21,7 +22,8 @@ export const LeaveSchema = sequelize.define<LeaveModel>('LeaveDetails', {
         }
     },
     Role: {
-        type: DataTypes.ENUM('Teacher', 'Student'),
+        type: DataTypes.ENUM,
+        values: ['Teacher', 'Student'],
         allowNull: false,
     },
     StartDate: {
@@ -37,13 +39,11 @@ export const LeaveSchema = sequelize.define<LeaveModel>('LeaveDetails', {
         allowNull: false,
     },
     Status: {
-        type: DataTypes.ENUM('pending', 'approved', 'rejected'),
+        type: DataTypes.ENUM,
+        values: ['pending', 'approved', 'rejected'],
         allowNull: false,
         defaultValue: 'pending',
     }
-}, {
-    // hooks: {
-    //     beforeSave: async users => {
-    //     }
-    // }
 });
+LeaveSchema.belongsTo(StudentsSchema, { foreignKey: 'StudentId' });
+StudentsSchema.hasMany(LeaveSchema, { foreignKey: 'StudentId' });

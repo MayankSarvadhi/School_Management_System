@@ -92,25 +92,36 @@ class LeaveController extends ApplicationController {
     }
 
     async TeacherParticularView(req, res, next) {
-        const teacherData = await db.StudentsSchema.findOne({
+        // const data = await db.LeaveSchema.findAll({ where: { Role: 'Student' }, attributes: ['id'] });
+        const datas = await db.StudentDetailsSchema.findAll({
             include: [{
-                model: db.ClassSchema,
-                attributes: ['ClassTeacher']
-            }]
+                model: db.StudentsSchema,
+            }],
+            // where: { ClassId: req.user.id }
         });
-        console.log(teacherData);
-
-        const data = await db.LeaveSchema.findAll({ where: { Role: 'Student' }});
-        return res.status(200).json({ success: true, data, message: 'Data Fetch SuccessFully' });
+        // const datas = await db.ClassSchema.findOne({
+        //     where: { ClassTeacher: req.user.id },
+        //     include: [{
+        //         model: db.StudentsSchema,
+        //         attributes: ['StudentId'],
+        //         as: ''
+        //         // include: [{
+        //         //     model: db.LeaveSchema
+        //         // }]
+        //     }],
+        // });
+        // const [classDetail] = await db.StudentsSchema.findAll({ where: { ClassId: datas.dataValues.id } });
+        return res.status(200).json({ success: true, datas, message: 'Data Fetch SuccessFully' });
     }
 
-    // async ApproveLeave(req, res, next) {
-
-    // }
-
-    // perticuler class teacher view his student leave not other
-
-    // update approve and reject
-
+    async ApproveLeave(req, res, next) {
+        const { id } = req.params;
+        const [updated] = await db.LeaveSchema.update(req.body, { where: { id }, returning: true, validate: true });
+        if (updated) {
+            return res.json({ success: true, StatusCode: 200, data: updated, message: 'Data Update Successfully' });
+        } else {
+            return next(new AppError(`This id = ${id} not found`, 'not_found'));
+        }
+    }
 }
 export const LeaveControllers = new LeaveController();
