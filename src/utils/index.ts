@@ -5,16 +5,8 @@ import { NotificationTypes, SendNotificationEmail } from './NotificationGenerato
 import { USER_ROLE } from './usersRole';
 import { checkExpJwt, CreteToken } from './checkJwtExp';
 import {
-    UserModel,
-    ClassModel,
-    AttendanceModel,
-    LectureModel,
-    ReportingModel,
-    StudentsModel,
-    StudentDetailsModel,
-    SubjectModel,
-    HolidaysModel,
-    LeaveModel
+    UserModel, ClassModel, AttendanceModel, LectureModel, ReportingModel, StudentsModel,
+    StudentDetailsModel, SubjectModel, HolidaysModel, LeaveModel
 } from './Interface';
 
 export {
@@ -35,6 +27,6 @@ export {
     CreteToken,
     SubjectModel,
     HolidaysModel,
-    LeaveModel
+    LeaveModel,
 
 };

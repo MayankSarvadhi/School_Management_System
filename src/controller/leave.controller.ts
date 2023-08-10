@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AppError } from '../utils';
 import { db } from '../models/index';
@@ -30,6 +29,16 @@ class LeaveController extends ApplicationController {
             }
         });
         if (existingLeave) throw new AppError('Please Select Valid date', 'invalid_request');
+
+        const isHoliday = await db.HoliDaySchema.findOne({
+            where: {
+                [Op.or]: [
+                    { date: StartDate },
+                    { date: EndDate }
+                ]
+            }
+        });
+        if (isHoliday) throw new AppError('You Can Not Apply at HoliDay', 'conflict');
 
         async function checkRole(Tid, Uid, role) {
             req.body.TeacherId = Tid;
@@ -77,10 +86,18 @@ class LeaveController extends ApplicationController {
             }
         });
         if (existingLeave) throw new AppError('Please Select Valid date', 'invalid_request');
-        const [updated] = await db.LeaveSchema.update(req.body, { where: { Id }});
+        const isHoliday = await db.HoliDaySchema.findOne({
+            where: {
+                [Op.or]: [
+                    { date: StartDate },
+                    { date: EndDate }
+                ]
+            }
+        });
+        if (isHoliday) throw new AppError('You Can Not Apply at HoliDay', 'conflict');
+        const [updated] = await db.LeaveSchema.update(req.body, { where: { Id }, returning: true });
         if (updated) {
-            const updatedData = await this.model.findByPk(id);
-            return res.json({ success: true, StatusCode: 200, data: updatedData, message: 'Data Update Successfully' });
+            return res.json({ success: true, StatusCode: 200, data: updated, message: 'Data Update Successfully' });
         } else {
             return next(new AppError(`This id = ${Id} not found`, 'not_found'));
         }
@@ -92,31 +109,30 @@ class LeaveController extends ApplicationController {
     }
 
     async TeacherParticularView(req, res, next) {
-        // const data = await db.LeaveSchema.findAll({ where: { Role: 'Student' }, attributes: ['id'] });
-        const datas = await db.StudentDetailsSchema.findAll({
+
+        const datas = await db.ClassSchema.findAll({
             include: [{
                 model: db.StudentsSchema,
+                attributes: ['ClassId'],
+                include: [{
+                    model: db.LeaveSchema,
+                    attributes: ['TeacherId', 'StudentId', 'Role', 'StartDate', 'EndDate'],
+                    where: { Role: 'Student' }
+                }]
             }],
-            // where: { ClassId: req.user.id }
+            attributes: ['ClassName', 'Grade', 'ClassTeacher'],
+            where: { ClassTeacher: req.user.id }
         });
-        // const datas = await db.ClassSchema.findOne({
-        //     where: { ClassTeacher: req.user.id },
-        //     include: [{
-        //         model: db.StudentsSchema,
-        //         attributes: ['StudentId'],
-        //         as: ''
-        //         // include: [{
-        //         //     model: db.LeaveSchema
-        //         // }]
-        //     }],
-        // });
-        // const [classDetail] = await db.StudentsSchema.findAll({ where: { ClassId: datas.dataValues.id } });
         return res.status(200).json({ success: true, datas, message: 'Data Fetch SuccessFully' });
     }
 
     async ApproveLeave(req, res, next) {
         const { id } = req.params;
-        const [updated] = await db.LeaveSchema.update(req.body, { where: { id }, returning: true, validate: true });
+        const [updated] = await db.LeaveSchema.update(req.body, {
+            where: { id },
+            returning: true,
+            validate: true
+        });
         if (updated) {
             return res.json({ success: true, StatusCode: 200, data: updated, message: 'Data Update Successfully' });
         } else {

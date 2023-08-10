@@ -45,5 +45,5 @@ export const LeaveSchema = sequelize.define<LeaveModel>('leaveDetails', {
         defaultValue: 'pending',
     }
 });
-LeaveSchema.belongsTo(StudentsSchema, { foreignKey: 'StudentId' });
 StudentsSchema.hasMany(LeaveSchema, { foreignKey: 'StudentId' });
+LeaveSchema.belongsTo(StudentsSchema, { foreignKey: 'StudentId' });

@@ -12,11 +12,11 @@ class UserController extends ApplicationController {
         const Data = await db.UsersSchema.create(req.body);
         res.status(201).json({ success: true, StatusCode: 201, data: Data, message: 'Data Insert Successfully' });
         const token = CreteToken(Data.id);
-        new SendNotificationEmail(
-            NotificationTypes.INVITE, req.body.Email,
-            `http://192.168.2.70:3000/user/${Data.id}/${token}`,
-            token
-        );
+        // new SendNotificationEmail(
+        //     NotificationTypes.INVITE, req.body.Email,
+        //     `http://192.168.2.70:3000/user/${Data.id}/${token}`,
+        //     token
+        // );
     }
 
     async checkJwtToken(req, res, next) {
