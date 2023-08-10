@@ -1,7 +1,6 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db';
 import { StudentsModel } from '../utils';
-import { StudentDetailsSchema } from './studentdetails.model';
 
 export const StudentsSchema = sequelize.define<StudentsModel>('teacherClassData', {
     ClassId: {
@@ -15,6 +14,7 @@ export const StudentsSchema = sequelize.define<StudentsModel>('teacherClassData'
     StudentId: {
         type: DataTypes.UUID,
         allowNull: false,
+        primaryKey: true,
         references: {
             model: 'studentDetails',
             key: 'id'
@@ -26,4 +26,3 @@ export const StudentsSchema = sequelize.define<StudentsModel>('teacherClassData'
         fields: ['StudentId']
     }]
 });
-StudentDetailsSchema.belongsTo(StudentsSchema, { foreignKey: 'StudentId' });
