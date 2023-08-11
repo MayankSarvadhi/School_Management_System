@@ -33,8 +33,8 @@ class LeaveController extends ApplicationController {
         const isHoliday = await db.HoliDaySchema.findOne({
             where: {
                 [Op.or]: [
-                    { date: StartDate },
-                    { date: EndDate }
+                    { Date: StartDate },
+                    { Date: EndDate }
                 ]
             }
         });
@@ -89,8 +89,8 @@ class LeaveController extends ApplicationController {
         const isHoliday = await db.HoliDaySchema.findOne({
             where: {
                 [Op.or]: [
-                    { date: StartDate },
-                    { date: EndDate }
+                    { Date: StartDate },
+                    { Date: EndDate }
                 ]
             }
         });
@@ -113,10 +113,10 @@ class LeaveController extends ApplicationController {
         const datas = await db.ClassSchema.findAll({
             include: [{
                 model: db.StudentsSchema,
-                attributes: ['ClassId'],
+                attributes: ['StudentId'],
                 include: [{
                     model: db.LeaveSchema,
-                    attributes: ['TeacherId', 'StudentId', 'Role', 'StartDate', 'EndDate'],
+                    attributes: ['StartDate', 'EndDate', 'Reason'],
                     where: { Role: 'Student' }
                 }]
             }],

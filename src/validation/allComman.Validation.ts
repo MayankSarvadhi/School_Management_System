@@ -42,7 +42,7 @@ export const StudentValidation = (req, res, next) => {
         FirstName: Joi.string().required(),
         LastName: Joi.string().required(),
         GRID: Joi.number().required(),
-        Gender: Joi.string().valid('Male','Female').required(),
+        Gender: Joi.string().valid('Male', 'Female').required(),
         Phone: new CommanValidationFilter().phone(),
         Email: Joi.string().min(10).email().required(),
         Password: new CommanValidationFilter().password(),
@@ -95,6 +95,17 @@ export const PasswordUpdateValidation = (req, res, next) => {
     validateReq(req, next, studentsSchemas);
 };
 
+export const HomeworkValidation = (req,res,next) => {
+    const HomeWorkSchemas = Joi.object({
+        SubjectId: Joi.number().required(),
+        HomeWork: Joi.string().required(),
+        Description: Joi.string().required(),
+        TodayDate: Joi.date().required(),
+        TeacherId: Joi.string().required()
+    });
+    validateReq(req,res,HomeWorkSchemas);
+}
+
 export const SubjectValidation = (req, res, next) => {
     const SubjectSchema = Joi.object({
         SubjectName: Joi.string().required(),
@@ -105,8 +116,8 @@ export const SubjectValidation = (req, res, next) => {
 
 export const LeaveValidation = (req, res, next) => {
     const LeaveSchema = Joi.object({
-        StartDate: Joi.string().required(),
-        EndDate: Joi.string().required(),
+        StartDate: Joi.date().required(),
+        EndDate: Joi.date().required(),
         Reason: Joi.string().required(),
     });
     validateReq(req, next, LeaveSchema);
@@ -115,10 +126,15 @@ export const LeaveValidation = (req, res, next) => {
 export const HoliDaysValidation = (req, res, next) => {
     const HolidaysSchema = Joi.object({
         HoliDayName: Joi.string().required(),
-        Date: Joi.string().required(),
+        Date: Joi.date().required(),
         Description: Joi.string().required()
     });
     validateReq(req, next, HolidaysSchema);
+};
+
+export const ScheduleValidation = (req, res, next) => {
+    const DateValidation = Joi.date().required();
+    validateReq(req, res, DateValidation);
 };
 
 export const LectureScheduleValidator = (WeekDay, Time, ClassName) => {

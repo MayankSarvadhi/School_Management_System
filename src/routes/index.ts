@@ -17,6 +17,7 @@ import { SubjectsRoutes } from './subject.routes';
 import { HolidaysRoutes } from './holiday.routes';
 import { LeaveRoutes } from './leave.routes';
 import passport from 'passport';
+import { PrincipalRoutes } from './dashboardRoutes/dashboard.routes';
 
 routes.use(END_POINTS.USER, UserRoutes);
 routes.use(END_POINTS.AUTH, AuthRoutes);
@@ -63,6 +64,10 @@ routes.use(END_POINTS.HOLIDAY,
 routes.use(END_POINTS.LEAVE,
     passport.authenticate('jwt', { session: false }),
     LeaveRoutes
+);
+routes.use(END_POINTS.PRINCIPAL,
+    passport.authenticate('jwt', { session: false }),
+    PrincipalRoutes
 );
 
 const invalidedRouter = asyncWrapper((req, res, next) => {

@@ -36,6 +36,7 @@ export const ClassSchema = sequelize.define<ClassModel>('classDetails', {
 });
 
 ClassSchema.hasMany(LectureSchema, { foreignKey: 'ClassId' });
+LectureSchema.belongsTo(ClassSchema, { foreignKey: 'ClassId' });
 ClassSchema.hasMany(StudentsSchema, { foreignKey: 'ClassId' });
 StudentsSchema.belongsTo(ClassSchema, { foreignKey: 'ClassId' });
 

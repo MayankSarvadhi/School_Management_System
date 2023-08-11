@@ -76,3 +76,11 @@ export interface LeaveModel extends Model {
     Reason: string;
     Status: 'pending' | 'approved' | 'rejected';
 }
+
+export interface HomeWorkModel extends Model {
+    SubjectId: number;
+    HomeWork: string;
+    Description: string;
+    TodayDate: Date;
+    TeacherId: string;
+}

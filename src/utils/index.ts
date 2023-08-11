@@ -6,7 +6,7 @@ import { USER_ROLE } from './usersRole';
 import { checkExpJwt, CreteToken } from './checkJwtExp';
 import {
     UserModel, ClassModel, AttendanceModel, LectureModel, ReportingModel, StudentsModel,
-    StudentDetailsModel, SubjectModel, HolidaysModel, LeaveModel
+    StudentDetailsModel, SubjectModel, HolidaysModel, LeaveModel, HomeWorkModel
 } from './Interface';
 
 export {
@@ -28,5 +28,6 @@ export {
     SubjectModel,
     HolidaysModel,
     LeaveModel,
+    HomeWorkModel
 
 };

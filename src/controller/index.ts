@@ -10,7 +10,8 @@ import { StudentDetailsControllers } from './studentDetails.controller';
 import { SubjectControllers } from './subject.controller';
 import { HoliDayControllers } from './holiday.controller';
 import { LeaveControllers } from './leave.controller';
-
+import { PrincipalController } from './dashboard/dashboard.controller';
+ 
 export {
     UserControllers,
     AuthControllers,
@@ -23,5 +24,6 @@ export {
     StudentDetailsControllers,
     SubjectControllers,
     HoliDayControllers,
-    LeaveControllers
+    LeaveControllers,
+    PrincipalController
 };
