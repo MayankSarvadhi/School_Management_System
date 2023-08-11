@@ -1,10 +1,10 @@
-import { AppError } from '../utils';
+import { AppError, RES_TYPES } from '../utils';
 
 export default function permit(roles) {
     return function (req, res, next) {
-        if (roles.includes(req.user.Role)) {
+        if (roles.includes(req.user.Role) && req.isAuthenticated()) {
             return next();
         }
-        throw new AppError('You do not have permission to access this route.', 'Forbidden');
+        throw new AppError(RES_TYPES.NOT_PERMISSION, 'Forbidden');
     };
 }

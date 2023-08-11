@@ -4,6 +4,7 @@ import { ErrorType } from './errorTypes';
 import { NotificationTypes, SendNotificationEmail } from './NotificationGenerator';
 import { USER_ROLE } from './usersRole';
 import { checkExpJwt, CreteToken } from './checkJwtExp';
+import { RES_TYPES } from './responseType';
 import {
     UserModel, ClassModel, AttendanceModel, LectureModel, ReportingModel, StudentsModel,
     StudentDetailsModel, SubjectModel, HolidaysModel, LeaveModel, HomeWorkModel
@@ -28,6 +29,7 @@ export {
     SubjectModel,
     HolidaysModel,
     LeaveModel,
-    HomeWorkModel
+    HomeWorkModel,
+    RES_TYPES
 
 };

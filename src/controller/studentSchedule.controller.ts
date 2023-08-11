@@ -1,4 +1,4 @@
-import { AppError } from '../utils';
+import { AppError, RES_TYPES } from '../utils';
 import { db } from '../models/index';
 
 class StudentScheduleController {
@@ -30,7 +30,7 @@ class StudentScheduleController {
             success: true,
             statusCode: 200,
             data: scheduleData,
-            message: 'Data Fetch Successfully'
+            message: RES_TYPES.FETCH
         });
     }
 }

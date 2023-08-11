@@ -3,6 +3,7 @@
 import { LectureScheduleValidator } from '../validation/allComman.Validation';
 import { db } from '../models/index';
 import { ApplicationController } from './application.controller';
+import { RES_TYPES } from '../utils';
 
 class LectureController extends ApplicationController {
     constructor() {
@@ -16,7 +17,7 @@ class LectureController extends ApplicationController {
         const done = LectureScheduleValidator(weekDay, Time, ClassName);
         if (done.isValid === true) {
             const lecture = await db.LectureSchema.create(req.body);
-            return res.status(201).json({ message: 'Lecture scheduled successfully', lecture });
+            return res.status(201).json({ message: RES_TYPES.CREATE, lecture });
         }
     }
 }

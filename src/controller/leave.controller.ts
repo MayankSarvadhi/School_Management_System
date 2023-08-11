@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AppError } from '../utils';
+import { AppError, RES_TYPES } from '../utils';
 import { db } from '../models/index';
 import { Op } from 'sequelize';
 import { ApplicationController } from './application.controller';
@@ -28,7 +28,7 @@ class LeaveController extends ApplicationController {
                 ],
             }
         });
-        if (existingLeave) throw new AppError('Please Select Valid date', 'invalid_request');
+        if (existingLeave) throw new AppError(RES_TYPES.VALID_DATE, 'invalid_request');
 
         const isHoliday = await db.HoliDaySchema.findOne({
             where: {
@@ -38,14 +38,14 @@ class LeaveController extends ApplicationController {
                 ]
             }
         });
-        if (isHoliday) throw new AppError('You Can Not Apply at HoliDay', 'conflict');
+        if (isHoliday) throw new AppError(RES_TYPES.NOT_APPLY, 'conflict');
 
         async function checkRole(Tid, Uid, role) {
             req.body.TeacherId = Tid;
             req.body.StudentId = Uid;
             req.body.Role = role;
             const data = await db.LeaveSchema.create(req.body);
-            res.status(201).json({ success: true, StatusCode: 201, data, message: 'Data Insert Successfully' });
+            res.status(201).json({ success: true, StatusCode: 201, data, message: RES_TYPES.CREATE });
         }
         req.user.Role === 'Teacher'
             ? checkRole(req.user.id, null, req.user.Role)
@@ -54,14 +54,14 @@ class LeaveController extends ApplicationController {
     }
 
     async DeleteLeave(req, res, next) {
-        const { params: { id }} = req;
-        const LeaveApproval = await db.LeaveSchema.findOne({ where: { id }});
-        if (LeaveApproval.Status === 'approved') throw new AppError('This Leave is Approved you can not delete it.', 'invalid_request');
-        const deleted = await db.LeaveSchema.destroy({ where: { id }});
+        const { params: { id } } = req;
+        const LeaveApproval = await db.LeaveSchema.findOne({ where: { id } });
+        if (LeaveApproval.Status === 'approved') throw new AppError(RES_TYPES.NOT_DELETE, 'invalid_request');
+        const deleted = await db.LeaveSchema.destroy({ where: { id } });
         if (deleted) {
-            return res.json({ success: true, statusCode: 200, data: deleted, message: 'Data deleted Successfully' });
+            return res.json({ success: true, statusCode: 200, data: deleted, message: RES_TYPES.DELETE });
         } else {
-            return next(new AppError(`id = ${id}  not found/Match`, 'not_found'));
+            return next(new AppError(RES_TYPES.ID_NOT_FOUND, 'not_found'));
         }
     }
 
@@ -85,7 +85,7 @@ class LeaveController extends ApplicationController {
                 ],
             }
         });
-        if (existingLeave) throw new AppError('Please Select Valid date', 'invalid_request');
+        if (existingLeave) throw new AppError(RES_TYPES.VALID_DATE, 'invalid_request');
         const isHoliday = await db.HoliDaySchema.findOne({
             where: {
                 [Op.or]: [
@@ -94,18 +94,18 @@ class LeaveController extends ApplicationController {
                 ]
             }
         });
-        if (isHoliday) throw new AppError('You Can Not Apply at HoliDay', 'conflict');
+        if (isHoliday) throw new AppError(RES_TYPES.NOT_APPLY, 'conflict');
         const [updated] = await db.LeaveSchema.update(req.body, { where: { Id }, returning: true });
         if (updated) {
-            return res.json({ success: true, StatusCode: 200, data: updated, message: 'Data Update Successfully' });
+            return res.json({ success: true, StatusCode: 200, data: updated, message: RES_TYPES.UPDATE });
         } else {
-            return next(new AppError(`This id = ${Id} not found`, 'not_found'));
+            return next(new AppError(RES_TYPES.ID_NOT_FOUND, 'not_found'));
         }
     }
 
     async PrincipalParticularView(req, res, next) {
-        const data = await db.LeaveSchema.findAll({ where: { Role: 'Teacher' }});
-        return res.status(200).json({ success: true, data, message: 'Data Fetch SuccessFully' });
+        const data = await db.LeaveSchema.findAll({ where: { Role: 'Teacher' } });
+        return res.status(200).json({ success: true, data, message: RES_TYPES.FETCH });
     }
 
     async TeacherParticularView(req, res, next) {
@@ -123,7 +123,7 @@ class LeaveController extends ApplicationController {
             attributes: ['ClassName', 'Grade', 'ClassTeacher'],
             where: { ClassTeacher: req.user.id }
         });
-        return res.status(200).json({ success: true, datas, message: 'Data Fetch SuccessFully' });
+        return res.status(200).json({ success: true, datas, message: RES_TYPES.FETCH });
     }
 
     async ApproveLeave(req, res, next) {
@@ -134,9 +134,9 @@ class LeaveController extends ApplicationController {
             validate: true
         });
         if (updated) {
-            return res.json({ success: true, StatusCode: 200, data: updated, message: 'Data Update Successfully' });
+            return res.json({ success: true, StatusCode: 200, data: updated, message: RES_TYPES.UPDATE });
         } else {
-            return next(new AppError(`This id = ${id} not found`, 'not_found'));
+            return next(new AppError(RES_TYPES.ID_NOT_FOUND, 'not_found'));
         }
     }
 }
