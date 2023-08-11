@@ -1,6 +1,5 @@
 import { db } from '../../models';
 import { Op } from 'sequelize';
-import { sequelize } from '../../config/db';
 
 class PrincipalDashboardController {
 
@@ -58,7 +57,7 @@ class PrincipalDashboardController {
                 monthlyAttendance[index] = { present: 0, absent: 0 }
             }
         }
-        res.json(monthlyAttendance);
+        return res.status(200).json({ success: true, statusCode: 200, monthlyAttendance, message: 'Data Fetch SuccessFully' });
     }
 
 }

@@ -2,14 +2,14 @@ import { db } from '../models/index';
 import dotenv from 'dotenv';
 dotenv.config();
 import * as jwt from 'jsonwebtoken';
-import { AppError } from '../utils';
+import { AppError, RES_TYPES } from '../utils';
 
 export class AuthControllers {
 
     async login(req, res, next) {
-        const { body: { Email, Password }} = req;
-        const result = await db.UsersSchema.findOne({ where: { Email }})
-            || await db.StudentDetailsSchema.findOne({ where: { Email }});
+        const { body: { Email, Password } } = req;
+        const result = await db.UsersSchema.findOne({ where: { Email } })
+            || await db.StudentDetailsSchema.findOne({ where: { Email } });
 
         if (result && result.authenticate(Password)) {
             const payload = {
@@ -25,23 +25,23 @@ export class AuthControllers {
             return res.status(200).json({
                 success: true,
                 data: token,
-                message: 'Congrats! You have Successfully logged in'
+                message: RES_TYPES.LOGIN
             });
         } else {
-            return next(new AppError('Authentication failed. Wrong Password or email', 'unauthorized'));
+            return next(new AppError(RES_TYPES.AUTH_FAIL, 'unauthorized'));
         }
     }
 
     async logout(req, res, next) {
-        if (req.session.token === undefined) throw new AppError('Users Already Logout', 'invalid_request');
+        if (req.session.token === undefined) throw new AppError(RES_TYPES.ALREADY_LOGOUT, 'invalid_request');
         req.session.destroy(err => {
             if (err) {
-                return next(new AppError('logout Failed', 'invalid_request'));
+                return next(new AppError(RES_TYPES.LOGOUT_FAIL, 'invalid_request'));
             }
             return res.status(200).json({
                 success: true,
                 statusCode: 200,
-                message: 'User Logged out Successfully'
+                message: RES_TYPES.LOGOUT
             });
         });
     }

@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { AppError } from '../utils';
+import { AppError, RES_TYPES } from '../utils';
 import { db } from '../models/index';
 import { Op } from 'sequelize';
 import { ApplicationController } from './application.controller';
@@ -14,7 +14,7 @@ class AttendanceController extends ApplicationController {
         const AttendanceData = await db.AttendanceSchema.bulkCreate(req.body);
         res.status(201).json({
             success: true, StatusCode: 201,
-            data: AttendanceData, message: 'Data Insert Successfully'
+            data: AttendanceData, message: RES_TYPES.CREATE
         });
     }
 
@@ -26,10 +26,10 @@ class AttendanceController extends ApplicationController {
         if (updateAttendance[0] === 1) {
             return res.json({
                 success: true, StatusCode: 200,
-                data: updateAttendance, message: 'Data Update Successfully'
+                data: updateAttendance, message: RES_TYPES.UPDATE
             });
         } else {
-            return next(new AppError(`This id = ${id} not found`, 'not_found'));
+            return next(new AppError(RES_TYPES.ID_NOT_FOUND, 'not_found'));
         }
     }
 
@@ -54,9 +54,9 @@ class AttendanceController extends ApplicationController {
             attendance = await db.AttendanceSchema.findAll({ where: { StudentId, Date: { [Op.between]: [StartDate, EndDate] }}});
         }
         if (attendance) {
-            res.status(200).json({ success: true, StatusCode: 200, data: attendance, message: 'Data Fined Successfully' });
+            res.status(200).json({ success: true, StatusCode: 200, data: attendance, message: RES_TYPES.FETCH });
         } else {
-            return next(new AppError('This is not found', 'not_found'));
+            return next(new AppError(RES_TYPES.NO_FOUND, 'not_found'));
         }
     }
 
