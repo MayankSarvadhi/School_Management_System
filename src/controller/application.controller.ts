@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AppError, RES_TYPES } from '../utils/index';
 import { Request, Response, NextFunction } from 'express';
@@ -16,7 +17,7 @@ export class ApplicationController {
     async update(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params;
 
-        const [updated] = await this.model.update(req.body, { where: { id } });
+        const [updated] = await this.model.update(req.body, { where: { id }});
         if (updated) {
             const updatedData = await this.model.findByPk(id);
             return res.json({ success: true, StatusCode: 200, data: updatedData, message: RES_TYPES.UPDATE });
@@ -27,7 +28,7 @@ export class ApplicationController {
 
     async delete(req: Request, res: Response, next: NextFunction) {
         const { id } = req.params;
-        const deleted = await this.model.destroy({ where: { id } });
+        const deleted = await this.model.destroy({ where: { id }});
         if (deleted) {
             return res.json({ success: true, statusCode: 200, data: deleted, message: RES_TYPES.DELETE });
         } else {

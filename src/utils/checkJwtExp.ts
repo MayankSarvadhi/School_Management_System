@@ -1,4 +1,3 @@
-import AppError from './appErrorGenerator';
 import jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -9,5 +8,5 @@ export function CreteToken(id) {
 }
 
 export function checkExpJwt(token) {
-    const verifyToken = jwt.verify(token, process.env.JWT_SECRET);
+    jwt.verify(token, process.env.JWT_SECRET);
 }

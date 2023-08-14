@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { AppError, RES_TYPES } from '../utils';
 import { db } from '../models/index';
@@ -54,10 +55,10 @@ class LeaveController extends ApplicationController {
     }
 
     async DeleteLeave(req, res, next) {
-        const { params: { id } } = req;
-        const LeaveApproval = await db.LeaveSchema.findOne({ where: { id } });
+        const { params: { id }} = req;
+        const LeaveApproval = await db.LeaveSchema.findOne({ where: { id }});
         if (LeaveApproval.Status === 'approved') throw new AppError(RES_TYPES.NOT_DELETE, 'invalid_request');
-        const deleted = await db.LeaveSchema.destroy({ where: { id } });
+        const deleted = await db.LeaveSchema.destroy({ where: { id }});
         if (deleted) {
             return res.json({ success: true, statusCode: 200, data: deleted, message: RES_TYPES.DELETE });
         } else {
@@ -104,7 +105,7 @@ class LeaveController extends ApplicationController {
     }
 
     async PrincipalParticularView(req, res, next) {
-        const data = await db.LeaveSchema.findAll({ where: { Role: 'Teacher' } });
+        const data = await db.LeaveSchema.findAll({ where: { Role: 'Teacher' }});
         return res.status(200).json({ success: true, data, message: RES_TYPES.FETCH });
     }
 

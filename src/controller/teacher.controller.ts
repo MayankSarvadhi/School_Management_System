@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { AppError, RES_TYPES } from '../utils';
 import { db } from '../models/index';
 import { ApplicationController } from './application.controller';
@@ -8,8 +9,8 @@ class StudentController extends ApplicationController {
     }
 
     async removeStudentsFromClass(req, res, next) {
-        const { params: { id } } = req;
-        const removeRecord = await db.StudentsSchema.destroy({ where: { StudentId: id } });
+        const { params: { id }} = req;
+        const removeRecord = await db.StudentsSchema.destroy({ where: { StudentId: id }});
         if (removeRecord) {
             return res.json({ success: true, statusCode: 200, data: removeRecord, message: RES_TYPES.DELETE });
         } else {
@@ -18,8 +19,8 @@ class StudentController extends ApplicationController {
     }
 
     async getParticularStudents(req, res, next) {
-        const { params: { ClassId } } = req;
-        const FilterStudents = await db.StudentsSchema.findAll({ where: { ClassId } });
+        const { params: { ClassId }} = req;
+        const FilterStudents = await db.StudentsSchema.findAll({ where: { ClassId }});
         if (FilterStudents) {
             return res.status(200).json({ success: true, statusCode: 200, data: FilterStudents, message: RES_TYPES.FETCH });
         } else {

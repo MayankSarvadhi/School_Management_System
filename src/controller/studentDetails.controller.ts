@@ -25,7 +25,7 @@ class StudentDetailsController extends ApplicationController {
     async updateOnlyPassword(req, res, next) {
         const { id, token } = req.params;
         checkExpJwt(token);
-        const [updated] = await db.StudentDetailsSchema.update(req.body, { where: { id } });
+        const [updated] = await db.StudentDetailsSchema.update(req.body, { where: { id }});
         if (updated) {
             const updatedData = await db.StudentDetailsSchema.findByPk(id);
             return res.json({ success: true, StatusCode: 200, data: updatedData, message: RES_TYPES.UPDATE });

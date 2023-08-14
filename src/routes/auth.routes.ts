@@ -7,3 +7,4 @@ import passport from 'passport';
 const Auth = new AuthControllers();
 AuthRoutes.post('/login', asyncWrapper(Auth.login));
 AuthRoutes.get('/logout', passport.authenticate('jwt', { session: false }), asyncWrapper(Auth.logout));
+AuthRoutes.post('/', asyncWrapper(Auth.forgotPassword));

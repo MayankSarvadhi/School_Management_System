@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { db } from '../models/index';
 import { ApplicationController } from './application.controller';

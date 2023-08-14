@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"UsersName\":\"F\",\n    \"FirstName\":\"Mayass\",\n    \"LastName\":\"hedni\",\n    \"Phone\":\"+919925163578\",\n    \"Gender\":\"Female\",\n    \"Email\":\"Pincipal@gmail.com\",\n    \"Password\":\"Abc@123\",   \n    \"Role\":\"Principal\"\n}",
+							"raw": "{\n    \"UsersName\":\"BB\",\n    \"FirstName\":\"Mayass\",\n    \"LastName\":\"hedni\",\n    \"Phone\":\"+919925163578\",\n    \"Gender\":\"Male\",\n    \"Email\":\"bhargav1.sarvadhi@gmail.com\",\n    \"Password\":\"Abc@123\",\n    \"Role\":\"Teacher\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -54,7 +54,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Email\":\"teacher2@gmail.com\",\n    \"Password\":\"Abc@123\"\n}\n",
+							"raw": "{\n    \"Email\":\"teacher1@gmail.com\",\n    \"Password\":\"Abc@123\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -167,11 +167,11 @@
 				{
 					"name": "update password by mail",
 					"request": {
-						"method": "PATCH",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Password\":\"Abc@789\"\n}",
+							"raw": "{\n    \"Email\": \"bhargav1.sarvadhi@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -179,16 +179,12 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/user/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjkxNDAxNjgxLCJleHAiOjE2OTE0ODgwODF9.wQwtpObW6yvG1aDOWm57qnK7fFt-Xfz-o8YIvgMFMns",
-							"protocol": "http",
+							"raw": "{{SCHOOL_URL}}/Auth",
 							"host": [
-								"localhost"
+								"{{SCHOOL_URL}}"
 							],
-							"port": "3000",
 							"path": [
-								"user",
-								"3",
-								"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjkxNDAxNjgxLCJleHAiOjE2OTE0ODgwODF9.wQwtpObW6yvG1aDOWm57qnK7fFt-Xfz-o8YIvgMFMns"
+								"Auth"
 							]
 						}
 					},
@@ -349,7 +345,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "[\n    {\n        \"Status\": \"present\",\n        \"Date\": \"2023-08-08\",\n        \"StudentId\": \"cf463498-35a5-448d-a6df-5d99c1691772\"\n    }\n]",
+							"raw": "[\n    {\n        \"Status\": \"present\",\n        \"Date\": \"2023-08-08\",\n        \"StudentId\": \"5270b4c6-d40b-4229-99a6-9a85e50768ee\"\n    }\n]",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -435,6 +431,9 @@
 				},
 				{
 					"name": "get all attendence",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -448,13 +447,23 @@
 						},
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"StartDate\":\"\",\n    \"EndDate\":\"\",\n    \"Period\":\"last-week\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{SCHOOL_URL}}/Attendance",
+							"raw": "{{SCHOOL_URL}}/Attendance/015e6a1a-7bd9-448c-be8b-fe77f3b604f4",
 							"host": [
 								"{{SCHOOL_URL}}"
 							],
 							"path": [
-								"Attendance"
+								"Attendance",
+								"015e6a1a-7bd9-448c-be8b-fe77f3b604f4"
 							]
 						}
 					},
@@ -482,7 +491,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"WeekDay\":\"2023-08-11\",\n    \"Time\":\"08:00\",\n    \"ClassId\":4\n}   ",
+							"raw": "{\n    \"WeekDay\":\"2023-08-18\",\n    \"Time\":\"14:00\",\n    \"ClassId\":4,\n    \"TeacherId\":\"c7af4f32-92b9-4253-9a45-aac481fa8c25\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -864,22 +873,25 @@
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "date",
+									"value": "2023-08-11",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": "{{SCHOOL_URL}}/schedule/?2023-08-04",
+							"raw": "{{SCHOOL_URL}}/schedule",
 							"host": [
 								"{{SCHOOL_URL}}"
 							],
 							"path": [
-								"schedule",
-								""
-							],
-							"query": [
-								{
-									"key": "2023-08-04",
-									"value": null
-								}
+								"schedule"
 							]
 						}
 					},
@@ -907,7 +919,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"FirstName\":\"demos\",\n    \"LastName\":\"Node\",\n    \"GRID\":2138,\n    \"Gender\":\"Male\",\n    \"Phone\":\"+919958016524\",\n    \"Password\":\"Abc@123\",\n    \"Email\":\"mayank.sarvadhi@gmail.com\"\n}",
+							"raw": "{\n    \"FirstName\":\"akshay\",\n    \"LastName\":\"Nodes\",\n    \"GRID\":2150,\n    \"Gender\":\"Male\",\n    \"Phone\":\"+919958016524\",\n    \"Password\":\"Abc@123\",\n    \"Email\":\"akshay.sarvadhi@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1252,7 +1264,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"StartDate\": \"2023-08-9\",\n    \"EndDate\": \"2023-08-12\",\n    \"Reason\": \"For Headack\"\n}",
+							"raw": "{\n    \"StartDate\": \"2023-08-10\",\n    \"EndDate\": \"2023-08-12\",\n    \"Reason\": \"For Marrige\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1374,7 +1386,69 @@
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "get Teacher or Student Leave",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{SCHOOL_URL}}/leave/student",
+									"host": [
+										"{{SCHOOL_URL}}"
+									],
+									"path": [
+										"leave",
+										"student"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "600"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"258-bZmaHStCcPpsAFBX/F26oFO62Ys\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Aug 2023 05:26:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"datas\": [\n        {\n            \"ClassName\": \"12\",\n            \"Grade\": \"D\",\n            \"ClassTeacher\": \"5c4af334-2672-4e66-843e-0ce7a9dba881\",\n            \"teacherClassData\": [\n                {\n                    \"StudentId\": \"015e6a1a-7bd9-448c-be8b-fe77f3b604f4\",\n                    \"leaveDetails\": [\n                        {\n                            \"StartDate\": \"2023-08-09\",\n                            \"EndDate\": \"2023-08-12\",\n                            \"Reason\": \"For Headack\"\n                        },\n                        {\n                            \"StartDate\": \"2023-08-13\",\n                            \"EndDate\": \"2023-08-18\",\n                            \"Reason\": \"For Headack\"\n                        }\n                    ]\n                },\n                {\n                    \"StudentId\": \"0d5d8fd7-6bf1-4ac7-9127-327bbd6bb281\",\n                    \"leaveDetails\": [\n                        {\n                            \"StartDate\": \"2023-08-13\",\n                            \"EndDate\": \"2023-08-18\",\n                            \"Reason\": \"For Marrige\"\n                        },\n                        {\n                            \"StartDate\": \"2023-08-08\",\n                            \"EndDate\": \"2023-08-10\",\n                            \"Reason\": \"For Marrige\"\n                        }\n                    ]\n                }\n            ]\n        }\n    ],\n    \"message\": \"Data Fetch SuccessFully\"\n}"
+						}
+					]
 				},
 				{
 					"name": "approve or reject leave",
@@ -1408,6 +1482,75 @@
 							"path": [
 								"leave",
 								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PrincipalDashBoard",
+			"item": [
+				{
+					"name": "get all countable details",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/principal",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"principal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "attanance dashbord data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "year",
+									"value": "2023",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{SCHOOL_URL}}/principal",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"principal"
 							]
 						}
 					},

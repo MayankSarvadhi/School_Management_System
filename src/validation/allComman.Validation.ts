@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-len */
 import Joi from 'joi';
 import { validateReq } from './validation.Helper';
@@ -105,7 +106,7 @@ export const HomeworkValidation = (req,res,next) => {
         TeacherId: Joi.string().required()
     });
     validateReq(req,res,HomeWorkSchemas);
-}
+};
 
 export const SubjectValidation = (req, res, next) => {
     const SubjectSchema = Joi.object({
