@@ -14,16 +14,14 @@ class UserController extends ApplicationController {
         const token = CreteToken(Data.id);
         new SendNotificationEmail(
             NotificationTypes.INVITE, req.body.Email,
-            `http://192.168.2.70:3000/user/${Data.id}/${token}`,
-            token
+            `http://192.168.2.70:3000/user/${Data.id}/${token}`
         );
     }
 
     async checkJwtToken(req, res, next) {
         const { token } = req.params;
         checkExpJwt(token);
-        res.render('newPassword');
-        // return res.status(200).json({ success: true, statusCode: 200, message: RES_TYPES.FETCH });
+        res.render('./newPasswordUser');
     }
 
     async UpdateUsers(req,res,next){

@@ -29,17 +29,15 @@ class PrincipalDashboardController {
             where: {
                 Date: {
                     [Op.between]: [startDate, endDate],
-                },
-            },
+                }
+            }
         });
 
-       
-        const monthlyAttendance = Array(11).fill(null);
-        // const monthlyAttendance = Array(12).fill({ present: 0, absent: 0 });
+        const monthlyAttendance = Array(12).fill(null);
         let month;
         let arr = [];
         attendanceData.forEach((attendance) => {
-            month = new Date(attendance.Date).getMonth() + 1;
+            month = new Date(attendance.Date).getMonth();
             arr.push(month)
             if (!monthlyAttendance[month]) {
                 monthlyAttendance[month] = { present: 0, absent: 0 };
@@ -50,9 +48,9 @@ class PrincipalDashboardController {
             } else if (attendance.Status === 'absent') {
                 monthlyAttendance[month].absent++;
             }
-
         });
-        for (let index = 1; index <= 12; index++) {
+        
+        for (let index = 0; index < 12; index++) {
             if (!arr.includes(index)) {
                 monthlyAttendance[index] = { present: 0, absent: 0 }
             }

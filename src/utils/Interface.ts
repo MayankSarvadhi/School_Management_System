@@ -43,6 +43,7 @@ export interface LectureModel extends Model {
     WeekDay: string;
     Time: string;
     ClassId: string;
+    TeacherId: string
 }
 
 export interface ReportingModel extends Model {

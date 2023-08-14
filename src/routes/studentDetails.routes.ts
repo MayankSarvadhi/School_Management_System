@@ -31,8 +31,8 @@ StudentDetailsRoutes.put(
 
 StudentDetailsRoutes.get('/:id/:token', asyncWrapper(StudentDetailsControllers.checkJwt));
 
-StudentDetailsRoutes.patch(
-    '/updatePsw/:token',
+StudentDetailsRoutes.post(
+    '/:id/:token',
     PasswordUpdateValidation,
     asyncWrapper(StudentDetailsControllers.updateOnlyPassword)
 );

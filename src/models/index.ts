@@ -28,4 +28,4 @@ export const db = {
     HomeWorkSchema
 };
 
-// db.sequelize.sync();
+db.sequelize.sync();

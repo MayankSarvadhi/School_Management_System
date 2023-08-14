@@ -2,7 +2,7 @@ import { db } from '../models/index';
 import dotenv from 'dotenv';
 dotenv.config();
 import * as jwt from 'jsonwebtoken';
-import { AppError, RES_TYPES } from '../utils';
+import { AppError, RES_TYPES, CreteToken, checkExpJwt , SendNotificationEmail, NotificationTypes } from '../utils';
 
 export class AuthControllers {
 
@@ -44,5 +44,16 @@ export class AuthControllers {
                 message: RES_TYPES.LOGOUT
             });
         });
+    }
+
+    async forgotPassword(req, res, next) {
+        const { body: { Email, Phone } } = req;
+        const verify = await db.UsersSchema.findOne({ where: { Email } }) || await db.StudentDetailsSchema.findOne({ where: { Email } });
+        if(verify.Phone === Phone){
+            const token = CreteToken(verify.id);
+            verify.Role === 'Student'
+            ? new SendNotificationEmail(NotificationTypes.INVITE, Email, `http://192.168.2.70:3000/details/${verify.id}/${token}`)
+            : new SendNotificationEmail(NotificationTypes.INVITE, Email, `http://192.168.2.70:3000/user/${verify.id}/${token}`);
+        }
     }
 }

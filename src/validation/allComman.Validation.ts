@@ -74,7 +74,8 @@ export const LectureValidation = (req, res, next) => {
     const lectureSchemas = Joi.object({
         WeekDay: Joi.string().required(),
         Time: Joi.string().required(),
-        ClassId: Joi.number().required()
+        ClassId: Joi.number().required(),
+        TeacherId: Joi.string().required()
     });
     validateReq(req, next, lectureSchemas);
 };

@@ -13,15 +13,13 @@ class StudentDetailsController extends ApplicationController {
         const Data = await db.StudentDetailsSchema.create(req.body);
         res.status(201).json({ success: true, StatusCode: 201, data: Data, message: RES_TYPES.CREATE });
         const token = CreteToken(Data.id);
-        // new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, `http://192.168.2.70:3000/details/${Data.id}/${token}`, token);
-        new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, `http://localhost:3000/details/${Data.id}/${token}`, token);
+        new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, `http://192.168.2.70:3000/details/${Data.id}/${token}`);
     }
 
     async checkJwt(req, res, next) {
         const { token } = req.params;
         checkExpJwt(token);
-        res.render('newPassword');
-        // return res.status(200).json({ success: true, statusCode: 200, message: RES_TYPES.FETCH });
+        res.render('./newPasswordStudent');
     }
 
     async updateOnlyPassword(req, res, next) {

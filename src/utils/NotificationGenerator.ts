@@ -22,7 +22,7 @@ const transporter: Transporter = nodemailer.createTransport({
 
 export class SendNotificationEmail {
 
-    constructor(types: string, emails: string, extra: string, token: string) {
+    constructor(types: string, emails: string, extra: string) {
         let subject = '', htmlContent = '';
         switch (types) {
 

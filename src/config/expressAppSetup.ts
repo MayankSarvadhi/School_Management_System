@@ -4,12 +4,15 @@ import { routes } from '../routes/index';
 import { ErrorHandler, responseHandler } from '../middleware';
 import passport from 'passport';
 import session from 'express-session';
+import path from 'path';
 import './authentication';
 dotenv.config();
 
 export const createApp = (): Express => {
     const app: Express = express();
 
+    app.set('view engine', 'ejs');
+    // app.set('views',path.join(__dirname,'views'));
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
     app.use(

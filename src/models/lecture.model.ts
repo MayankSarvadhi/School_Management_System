@@ -18,10 +18,18 @@ export const LectureSchema = sequelize.define<LectureModel>('lectureDetails', {
             model: 'classDetails',
             key: 'id'
         }
+    },
+    TeacherId: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+            model: 'userInformation',
+            key: 'id'
+        }
     }
 }, {
     indexes: [{
         unique: true,
-        fields: ['WeekDay', 'Time']
+        fields: ['WeekDay', 'Time', 'ClassId']
     }]
 });

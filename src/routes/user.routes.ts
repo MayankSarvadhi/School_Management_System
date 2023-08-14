@@ -26,7 +26,7 @@ UserRoutes.put('/:id',
     asyncWrapper(UserControllers.update.bind(UserControllers))
 );
 
-UserRoutes.patch('/:id/:token', PasswordUpdateValidation, asyncWrapper(UserControllers.UpdateUsers));
+UserRoutes.post('/:id/:token', PasswordUpdateValidation, asyncWrapper(UserControllers.UpdateUsers));
 UserRoutes.get('/:id/:token', asyncWrapper(UserControllers.checkJwtToken));
 
 UserRoutes.get('/',
