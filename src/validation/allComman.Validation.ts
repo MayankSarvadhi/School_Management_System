@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable max-len */
 import Joi from 'joi';
 import { validateReq } from './validation.Helper';
 import { AppError } from '../utils';

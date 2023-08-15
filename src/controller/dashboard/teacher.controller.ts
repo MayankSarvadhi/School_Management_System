@@ -12,7 +12,6 @@ class TeacherDashboardController {
                     WeekDay: req.body.Date || toDayDate
                 }
             });
-        console.log(schedule);
         const profile = db.UsersSchema.findByPk(req.user.id);
         if (schedule && profile) {
             const data = { schedule, profile };

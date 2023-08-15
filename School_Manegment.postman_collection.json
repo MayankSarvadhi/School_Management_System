@@ -895,14 +895,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "login student",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
 				}
 			]
 		},

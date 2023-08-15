@@ -96,16 +96,26 @@ You should see a message in the console indicating that the server has started s
 
 ## API Endpoints
 
-| Endpoint        | Description                                 |
-|-----------------|---------------------------------------------|
-| /user           | User-related operations, e.g., registration, user details update. |
-| /auth           | Authentication and login functionality.    |
-| /class          | Class management, adding, and removing classes. Restricted to Principal role. |
-| /attendance     | Attendance management, marking attendance. Restricted to Teacher and Principal roles. |
-| /lecture        | Lecture scheduling for classes. Restricted to Teacher and Principal roles. |
-| /reporting      | Reporting issues with students. Restricted to Teacher and Principal roles. |
-| /student        | Adding and removing students to/from classes. Restricted to Teacher role. |
-| /schedule       | Viewing student schedule. Restricted to Student and Principal roles. |
+| Endpoint          | Description                                                             |
+|-------------------|-------------------------------------------------------------------------|
+| /user             | User-related operations, e.g., registration, user details update.       |
+| /auth/login       | Authentication and login functionality.                                |
+| /auth/logout      | Authentication and logout functionality.                                |
+| /auth/forgot      | Authentication and forgot Password functionality.                                |
+| /class            | Class management, adding, and removing classes. Restricted to Principal role. |
+| /attendance       | Attendance management, marking attendance. Restricted to Teacher and Principal roles. |
+| /lecture          | Lecture scheduling for classes. Restricted to Teacher and Principal roles. |
+| /reporting        | Reporting issues with students. Restricted to Teacher and Principal roles. |
+| /student          | Adding and removing students to/from classes. Restricted to Teacher role. |
+| /student_details  | Viewing student details. Restricted to Student and Principal roles.    |
+| /subject          | Subject management, adding, and removing subjects. Restricted to Principal role. |
+| /holiday          | Managing holidays and vacation periods. Restricted to Principal role.  |
+| /leave            | Leave management for teachers and students. Restricted to Teacher and Student roles. |
+| /leave/student    | Leave management for students. Restricted to Teacher and Student roles. |
+| /leave/teacher    | Leave management for teacher. Restricted to Teacher and Student roles. |
+| /teacher          | Teacher-related operations, e.g., adding, removing, or updating teacher information. Restricted to Principal role. |
+| /dashboard        | Access to the dashboard for relevant data and statistics.              |
+
 
 
 ## Error Handling

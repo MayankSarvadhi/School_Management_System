@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable max-len */
 import { db } from '../models/index';
 import dotenv from 'dotenv';
 dotenv.config();
 import * as jwt from 'jsonwebtoken';
-import { AppError, RES_TYPES, CreteToken, checkExpJwt, SendNotificationEmail, NotificationTypes } from '../utils';
+import { AppError, RES_TYPES, CreteToken, SendNotificationEmail, NotificationTypes } from '../utils';
 
 export class AuthControllers {
 
@@ -50,12 +49,18 @@ export class AuthControllers {
 
     async forgotPassword(req, res, next) {
         const { body: { Email, Phone }} = req;
-        const verify = await db.UsersSchema.findOne({ where: { Email }}) || await db.StudentDetailsSchema.findOne({ where: { Email }});
+        const verify = await db.UsersSchema.findOne({ where: { Email }})
+            || await db.StudentDetailsSchema.findOne({ where: { Email }});
         if (verify.dataValues.Phone === Phone) {
             const token = CreteToken(verify.dataValues.id);
             verify.dataValues.Role === 'Student'
-                ? new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, `http://192.168.2.70:3000/details/${verify.id}/${token}`)
-                : new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, `http://192.168.2.70:3000/user/${verify.id}/${token}`);
+                ? new SendNotificationEmail(
+                    NotificationTypes.FORGOT_PSW, req.body.Email,
+                    `http://192.168.2.70:3000/details/${verify.id}/${token}`)
+
+                : new SendNotificationEmail(
+                    NotificationTypes.FORGOT_PSW, req.body.Email,
+                    `http://192.168.2.70:3000/user/${verify.id}/${token}`);
             return res.status(200).json({ success: true, message: RES_TYPES.FETCH });
         }
         return next(new AppError('Please Check Your Input detail UserNot Found', 'not_found'));

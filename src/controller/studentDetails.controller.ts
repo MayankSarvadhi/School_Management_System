@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AppError, NotificationTypes, SendNotificationEmail, RES_TYPES, checkExpJwt, CreteToken } from '../utils';
 import { db } from '../models/index';
 import { ApplicationController } from './application.controller';

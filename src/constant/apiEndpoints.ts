@@ -6,11 +6,9 @@ export enum END_POINTS {
     LECTURE = '/lecture',
     REPORTING = '/reporting',
     STUDENT = '/student',
-    SCHEDULE = '/schedule',
     STUDENT_DETAILS = '/details',
     SUBJECT = '/subject',
     HOLIDAY = '/holiday',
     LEAVE = '/leave',
-    TEACHER = '/teacher',
     DASHBOARD = '/dashboard'
 }

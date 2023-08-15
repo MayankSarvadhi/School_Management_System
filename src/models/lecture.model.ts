@@ -30,6 +30,6 @@ export const LectureSchema = sequelize.define<LectureModel>('lectureDetails', {
 }, {
     indexes: [{
         unique: true,
-        fields: ['WeekDay', 'Time', 'ClassId']
+        fields: ['WeekDay', 'Time', 'ClassId', 'TeacherId']
     }]
 });

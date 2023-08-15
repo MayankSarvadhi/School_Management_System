@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { AppError, RES_TYPES } from '../utils';
 import { db } from '../models/index';
 import { Op } from 'sequelize';
@@ -46,7 +44,9 @@ class LeaveController extends ApplicationController {
             req.body.StudentId = Uid;
             req.body.Role = role;
             const data = await db.LeaveSchema.create(req.body);
-            res.status(201).json({ success: true, StatusCode: 201, data, message: RES_TYPES.CREATE });
+            res.status(201).json(
+                { success: true, StatusCode: 201, data, message: RES_TYPES.CREATE }
+            );
         }
         req.user.Role === 'Teacher'
             ? checkRole(req.user.id, null, req.user.Role)
@@ -60,7 +60,9 @@ class LeaveController extends ApplicationController {
         if (LeaveApproval.Status === 'approved') throw new AppError(RES_TYPES.NOT_DELETE, 'invalid_request');
         const deleted = await db.LeaveSchema.destroy({ where: { id }});
         if (deleted) {
-            return res.json({ success: true, statusCode: 200, data: deleted, message: RES_TYPES.DELETE });
+            return res.json(
+                { success: true, statusCode: 200, data: deleted, message: RES_TYPES.DELETE }
+            );
         } else {
             return next(new AppError(RES_TYPES.ID_NOT_FOUND, 'not_found'));
         }
@@ -98,7 +100,9 @@ class LeaveController extends ApplicationController {
         if (isHoliday) throw new AppError(RES_TYPES.NOT_APPLY, 'conflict');
         const [updated] = await db.LeaveSchema.update(req.body, { where: { Id }, returning: true });
         if (updated) {
-            return res.json({ success: true, StatusCode: 200, data: updated, message: RES_TYPES.UPDATE });
+            return res.json(
+                { success: true, StatusCode: 200, data: updated, message: RES_TYPES.UPDATE }
+            );
         } else {
             return next(new AppError(RES_TYPES.ID_NOT_FOUND, 'not_found'));
         }

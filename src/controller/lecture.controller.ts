@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { LectureScheduleValidator } from '../validation/allComman.Validation';
 import { db } from '../models/index';
 import { ApplicationController } from './application.controller';

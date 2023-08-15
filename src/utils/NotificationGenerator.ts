@@ -8,8 +8,7 @@ import { logger } from '../logger/logger';
 
 export enum NotificationTypes {
     INVITE = 'invite',
-    MESSAGE = 'message',
-    CELEBRATION = 'celebration'
+    FORGOT_PSW = 'Forget Password',
 }
 
 const transporter: Transporter = nodemailer.createTransport({
@@ -32,7 +31,6 @@ export class SendNotificationEmail {
                         <html>
             <head>
                 <style>
-                    /* Add your CSS styles here */
                     .email-container {
                         background-color: #f5f5f5;
                         padding: 20px;
@@ -63,27 +61,41 @@ export class SendNotificationEmail {
             </html>`;
                 break;
 
-            case NotificationTypes.MESSAGE:
+            case NotificationTypes.FORGOT_PSW:
 
-                subject = 'New Message Notification';
+                subject = 'Forget Password';
                 htmlContent = `
-                        <h1>Message Notification</h1>
-                        <p>Hello,</p>
-                        <p>You have received a new message:</p>
-                        <p>Message Content: ${extra}</p>
-                        <p>Regards,</p>
-                        <p>Your App Team</p>`;
-                break;
-
-            case NotificationTypes.CELEBRATION:
-
-                subject = 'Celebration Notification';
-                htmlContent = `
-                        <h1>Celebration Notification</h1>
-                        <p>Hello,</p>
-                        <p>Congratulations! We are celebrating ${extra}.</p>
-                        <p>Regards,</p>
-                        <p>Your App Team</p>`;
+                        <html>
+            <head>
+                <style>
+                    .email-container {
+                        background-color: #f5f5f5;
+                        padding: 20px;
+                        border-radius: 5px;
+                        font-family: Arial, sans-serif;
+                    }
+                    .button {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #007bff;
+                        color: #fff !important;
+                        text-decoration: none;
+                        border-radius: 5px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="email-container">
+                    <h1>Reset Your Password From Here</h1>
+                    <p>Hello there!</p>
+                    <p>You can create a new password from hear.</p>
+                    <p>This password or link should never be shared with others.</p>
+                    <a class="button" href="${extra}">Create Password</a>
+                    <p>Regards,</p>
+                    <p>Your App Team</p>
+                </div>
+            </body>
+            </html>`;
                 break;
 
             default:

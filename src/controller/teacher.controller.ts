@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { AppError, RES_TYPES } from '../utils';
 import { db } from '../models/index';
 import { ApplicationController } from './application.controller';
