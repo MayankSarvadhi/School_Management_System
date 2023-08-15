@@ -11,13 +11,14 @@ import { AttendanceRoutes } from './attendance.routes';
 import { LectureRoutes } from './lecture.routes';
 import { ReportingRoutes } from './reporting.routes';
 import { StudentsRoutes } from './teacher.routes';
-import { StudentsScheduleRoutes } from './studentSchedule.routes';
 import { StudentDetailsRoutes } from './studentDetails.routes';
 import { SubjectsRoutes } from './subject.routes';
 import { HolidaysRoutes } from './holiday.routes';
 import { LeaveRoutes } from './leave.routes';
 import passport from 'passport';
-import { PrincipalRoutes } from './dashboardRoutes/dashboard.routes';
+import { PrincipalRoutes } from './dashboardRoutes/principal.routes';
+import { TeacherRoutes } from './dashboardRoutes/teacher.routes';
+import { StudentRoutes } from './dashboardRoutes/student.routes';
 
 routes.use(END_POINTS.USER, UserRoutes);
 routes.use(END_POINTS.AUTH, AuthRoutes);
@@ -45,11 +46,6 @@ routes.use(END_POINTS.STUDENT,
     permit([USER_ROLE.TEACHER]),
     StudentsRoutes
 );
-routes.use(END_POINTS.SCHEDULE,
-    passport.authenticate('jwt', { session: false }),
-    permit([USER_ROLE.STUDENT]),
-    StudentsScheduleRoutes
-);
 routes.use(END_POINTS.STUDENT_DETAILS, StudentDetailsRoutes);
 routes.use(END_POINTS.SUBJECT,
     passport.authenticate('jwt', { session: false }),
@@ -65,9 +61,20 @@ routes.use(END_POINTS.LEAVE,
     passport.authenticate('jwt', { session: false }),
     LeaveRoutes
 );
-routes.use(END_POINTS.PRINCIPAL,
+routes.use(END_POINTS.DASHBOARD,
     passport.authenticate('jwt', { session: false }),
+    permit([USER_ROLE.PRINCIPAL]),
     PrincipalRoutes
+);
+routes.use(END_POINTS.DASHBOARD,
+    passport.authenticate('jwt', { session: false }),
+    permit([USER_ROLE.TEACHER]),
+    TeacherRoutes
+);
+routes.use(END_POINTS.DASHBOARD,
+    passport.authenticate('jwt', { session: false }),
+    permit([USER_ROLE.STUDENT]),
+    StudentRoutes
 );
 
 const invalidedRouter = asyncWrapper((req, res, next) => {

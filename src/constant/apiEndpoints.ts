@@ -11,6 +11,6 @@ export enum END_POINTS {
     SUBJECT = '/subject',
     HOLIDAY = '/holiday',
     LEAVE = '/leave',
-    PRINCIPAL = '/principal',
     TEACHER = '/teacher',
+    DASHBOARD = '/dashboard'
 }

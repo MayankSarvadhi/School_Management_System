@@ -1,10 +1,9 @@
-import { AppError, RES_TYPES } from '../utils';
-import { db } from '../models/index';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { AppError, RES_TYPES } from '../../utils';
+import { db } from '../../models';
 
-class StudentScheduleController {
-
-    async viewSchedule(req, res, next) {
-
+class StudentDashboardController {
+    async ViewAllData(req, res, next) {
         const date = req.body.date;
         const toDayDate = new Date().toISOString().split('T')[0];
         const scheduleData = await db.StudentsSchema.findOne({
@@ -26,13 +25,16 @@ class StudentScheduleController {
         if (!scheduleData) {
             return next(new AppError('Today has no schedule', 'not_found'));
         }
+        const profileData = await db.StudentDetailsSchema.findByPk(req.user.id);
+        const holiday= await db.HoliDaySchema.findAll({});
+        const data = { scheduleData,profileData, holiday };
         return res.status(200).json({
             success: true,
             statusCode: 200,
-            data: scheduleData,
+            data,
             message: RES_TYPES.FETCH
         });
     }
 }
 
-export const StudentScheduleControllers = new StudentScheduleController();
+export const StudentDashboardControllers = new StudentDashboardController();

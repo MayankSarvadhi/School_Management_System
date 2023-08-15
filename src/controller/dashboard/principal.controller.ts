@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { db } from '../../models';
 import { Op } from 'sequelize';
 
@@ -5,9 +6,9 @@ class PrincipalDashboardController {
 
     async TotalCountRecord(req, res, next) {
         const data = await db.StudentDetailsSchema.count();
-        const teacherData = await db.UsersSchema.count({ where: { Role: 'Teacher' } });
-        const maleCount = await db.StudentDetailsSchema.count({ where: { Gender: 'Male' } });
-        const femaleCount = await db.StudentDetailsSchema.count({ where: { Gender: 'Female' } });
+        const teacherData = await db.UsersSchema.count({ where: { Role: 'Teacher' }});
+        const maleCount = await db.StudentDetailsSchema.count({ where: { Gender: 'Male' }});
+        const femaleCount = await db.StudentDetailsSchema.count({ where: { Gender: 'Female' }});
 
         const malePercentage = Number(((maleCount / data) * 100).toFixed(2));
         const femalePercentage = Number(((femaleCount / data) * 100).toFixed(2));
@@ -16,7 +17,7 @@ class PrincipalDashboardController {
             totalStudent: data,
             totalMale: malePercentage,
             totalFemale: femalePercentage
-        }
+        };
         return res.status(200).json({ success: true, statusCode: 200, Total, message: 'Data Fetch SuccessFully' });
     }
 
@@ -28,17 +29,17 @@ class PrincipalDashboardController {
         const attendanceData = await db.AttendanceSchema.findAll({
             where: {
                 Date: {
-                    [Op.between]: [startDate, endDate],
+                    [Op.between]: [startDate, endDate]
                 }
             }
         });
 
         const monthlyAttendance = Array(12).fill(null);
         let month;
-        let arr = [];
-        attendanceData.forEach((attendance) => {
+        const arr = [];
+        attendanceData.forEach(attendance => {
             month = new Date(attendance.Date).getMonth();
-            arr.push(month)
+            arr.push(month);
             if (!monthlyAttendance[month]) {
                 monthlyAttendance[month] = { present: 0, absent: 0 };
 
@@ -49,10 +50,10 @@ class PrincipalDashboardController {
                 monthlyAttendance[month].absent++;
             }
         });
-        
+
         for (let index = 0; index < 12; index++) {
             if (!arr.includes(index)) {
-                monthlyAttendance[index] = { present: 0, absent: 0 }
+                monthlyAttendance[index] = { present: 0, absent: 0 };
             }
         }
         return res.status(200).json({ success: true, statusCode: 200, monthlyAttendance, message: 'Data Fetch SuccessFully' });

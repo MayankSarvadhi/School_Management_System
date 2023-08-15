@@ -54,7 +54,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Email\":\"teacher1@gmail.com\",\n    \"Password\":\"Abc@123\"\n}\n",
+							"raw": "{\n    \"Email\":\"Principal@gmail.com\",\n    \"Password\":\"Abc@123\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -171,7 +171,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"Email\": \"bhargav1.sarvadhi@gmail.com\"\n}",
+							"raw": "{\n    \"Email\": \"bhargav1.sarvadhi@gmail.com\",\n    \"Phone\":\"+919925163578\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -179,12 +179,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{SCHOOL_URL}}/Auth",
+							"raw": "{{SCHOOL_URL}}/auth",
 							"host": [
 								"{{SCHOOL_URL}}"
 							],
 							"path": [
-								"Auth"
+								"auth"
 							]
 						}
 					},
@@ -858,48 +858,6 @@
 			]
 		},
 		{
-			"name": "schedule",
-			"item": [
-				{
-					"name": "Student view Schedule",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{School_Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "date",
-									"value": "2023-08-11",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{SCHOOL_URL}}/schedule",
-							"host": [
-								"{{SCHOOL_URL}}"
-							],
-							"path": [
-								"schedule"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "StudentsDetailsCreate",
 			"item": [
 				{
@@ -919,7 +877,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"FirstName\":\"akshay\",\n    \"LastName\":\"Nodes\",\n    \"GRID\":2150,\n    \"Gender\":\"Male\",\n    \"Phone\":\"+919958016524\",\n    \"Password\":\"Abc@123\",\n    \"Email\":\"akshay.sarvadhi@gmail.com\"\n}",
+							"raw": "{\n    \"FirstName\":\"akshay\",\n    \"LastName\":\"Nodes\",\n    \"GRID\":2151,\n    \"Gender\":\"Male\",\n    \"Phone\":\"+919958016524\",\n    \"Password\":\"Abc@123\",\n    \"Email\":\"bhargav1.sarvadhi@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -933,36 +891,6 @@
 							],
 							"path": [
 								"details"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update student password",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"Password\":\"Abc@123\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/details/18/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTY5MTM5OTUwNSwiZXhwIjoxNjkxNDg1OTA1fQ.YVsbeski-JKvZD7utXYkLZaAlC0BNkNh9-8uwtHTa1w",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"details",
-								"18",
-								"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImlhdCI6MTY5MTM5OTUwNSwiZXhwIjoxNjkxNDg1OTA1fQ.YVsbeski-JKvZD7utXYkLZaAlC0BNkNh9-8uwtHTa1w"
 							]
 						}
 					},
@@ -1508,11 +1436,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{SCHOOL_URL}}/principal",
+							"raw": "{{SCHOOL_URL}}/dashboard/principal",
 							"host": [
 								"{{SCHOOL_URL}}"
 							],
 							"path": [
+								"dashboard",
 								"principal"
 							]
 						}
@@ -1545,12 +1474,79 @@
 							]
 						},
 						"url": {
-							"raw": "{{SCHOOL_URL}}/principal",
+							"raw": "{{SCHOOL_URL}}/dashboard/principal",
 							"host": [
 								"{{SCHOOL_URL}}"
 							],
 							"path": [
+								"dashboard",
 								"principal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TeacherDashboard",
+			"item": [
+				{
+					"name": "get all data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/dashboard/teacher",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"dashboard",
+								"teacher"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "StudentDashboard",
+			"item": [
+				{
+					"name": "all student detaills",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{School_Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{SCHOOL_URL}}/dashboard/student",
+							"host": [
+								"{{SCHOOL_URL}}"
+							],
+							"path": [
+								"dashboard",
+								"student"
 							]
 						}
 					},

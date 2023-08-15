@@ -51,12 +51,13 @@ export class AuthControllers {
     async forgotPassword(req, res, next) {
         const { body: { Email, Phone }} = req;
         const verify = await db.UsersSchema.findOne({ where: { Email }}) || await db.StudentDetailsSchema.findOne({ where: { Email }});
-        if (verify.Phone === Phone) {
-            const token = CreteToken(verify.id);
-            verify.Role === 'Student'
-                ? new SendNotificationEmail(NotificationTypes.INVITE, Email, `http://192.168.2.70:3000/details/${verify.id}/${token}`)
-                : new SendNotificationEmail(NotificationTypes.INVITE, Email, `http://192.168.2.70:3000/user/${verify.id}/${token}`);
+        if (verify.dataValues.Phone === Phone) {
+            const token = CreteToken(verify.dataValues.id);
+            verify.dataValues.Role === 'Student'
+                ? new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, `http://192.168.2.70:3000/details/${verify.id}/${token}`)
+                : new SendNotificationEmail(NotificationTypes.INVITE, req.body.Email, `http://192.168.2.70:3000/user/${verify.id}/${token}`);
+            return res.status(200).json({ success: true, message: RES_TYPES.FETCH });
         }
-        return res.status(200).json({ success: true, message: RES_TYPES.FETCH });
+        return next(new AppError('Please Check Your Input detail UserNot Found', 'not_found'));
     }
 }
