@@ -21,9 +21,9 @@ export const LectureSchema = sequelize.define<LectureModel>('lectureDetails', {
     },
     TeacherId: {
         type: DataTypes.UUID,
-        allowNull: false,
+        allowNull: true,
         references: {
-            model: 'userInformation',
+            model: 'userInformations',
             key: 'id'
         }
     }
@@ -31,5 +31,6 @@ export const LectureSchema = sequelize.define<LectureModel>('lectureDetails', {
     indexes: [{
         unique: true,
         fields: ['WeekDay', 'Time', 'ClassId', 'TeacherId']
-    }]
+    }],
+    timestamps: true
 });
